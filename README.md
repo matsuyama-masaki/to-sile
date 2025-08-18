@@ -74,3 +74,5 @@
 | バージョン管理   | GitHub |
 | デプロイサーバ   | Fly.io |
 
+### 画面遷移図
+Figma：https://www.figma.com/design/TWgC9oJ2HoxEu14QRfrpVT/%E3%83%88%E3%82%A6%E3%82%B7%E3%83%AB%E3%82%A2%E3%83%97%E3%83%AA?node-id=0-1&p=f&t=Gmve7Nbt5MRA3NaE-0
