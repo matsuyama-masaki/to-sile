@@ -45,7 +45,7 @@ jobs:
         image: mysql:8.0
         env:
           MYSQL_ROOT_PASSWORD: password
-          MYSQL_DATABASE: to_sile_test
+          MYSQL_DATABASE: myapp_test
           MYSQL_ALLOW_EMPTY_PASSWORD: false
         ports:
           - 3306:3306

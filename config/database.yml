@@ -20,7 +20,7 @@ default: &default
   
 development:
   <<: *default
-  database: to_sile_development
+  database: myapp_development
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -28,7 +28,7 @@ development:
 test:
   adapter: mysql2
   encoding: utf8mb4
-  database: to_sile_test
+  database: myapp_test
   username: root
   password: password
   host: 127.0.0.1
