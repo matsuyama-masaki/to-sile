@@ -11,7 +11,6 @@ jobs:
         env:
           MYSQL_ROOT_PASSWORD: password
           MYSQL_DATABASE: myapp_test
-          MYSQL_ALLOW_EMPTY_PASSWORD: 'no'
         ports:
           - 3306:3306
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
@@ -42,8 +41,10 @@ jobs:
           bin/rails db:migrate RAILS_ENV=test
         env:
           RAILS_ENV: test
+          DATABASE_URL: mysql2://root:password@127.0.0.1:3306/myapp_test
           
       - name: Run tests
         run: bin/rails db:test:prepare test test:system
         env:
           RAILS_ENV: test
+          DATABASE_URL: mysql2://root:password@127.0.0.1:3306/myapp_test
