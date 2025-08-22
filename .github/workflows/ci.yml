@@ -70,6 +70,33 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
 
+        name: Wait for MySQL
+        run: |
+          echo "Waiting for MySQL to be ready..."
+          for i in {1..30}; do
+            if mysqladmin ping -h 127.0.0.1 -P 3306 -u root -ppassword --silent; then
+              echo "✅ MySQL is ready!"
+              break
+            fi
+            echo "⏳ Waiting for MySQL... ($i/30)"
+            sleep 2
+          done
+
+        name: Setup test database
+        run: |
+          echo "=== Database configuration check ==="
+          echo "DATABASE_URL: $DATABASE_URL"
+          echo "=== Creating test database ==="
+          bin/rails db:create RAILS_ENV=test
+          echo "=== Running migrations ==="
+          bin/rails db:migrate RAILS_ENV=test
+          echo "=== Verifying schema.rb ==="
+          ls -la db/schema.rb || echo "⚠️ schema.rb not found"
+          echo "=== Database setup completed ==="
+        env:
+          RAILS_ENV: test
+          DATABASE_URL: mysql2://root:password@127.0.0.1:3306/to_sile_test
+
       - name: Run tests
         env:
           RAILS_ENV: test
