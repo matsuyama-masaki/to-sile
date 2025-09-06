@@ -1,14 +1,21 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  # ユーザー認証関連のルーティングをDeviseで設定
+  devise_for :users
 
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
+  # ルートディレクトリへのアクセスはpostsコントローラのindexアクションへ
+  get root "posts#index"
+
+  # 投稿関連のルーティング
+  resources :posts, only: %i[index new create show edit update destroy]
+
+# 開発環境でのみletter_opener_webをマウント
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
+
+  # ヘルスチェック用エンドポイント
   get "up" => "rails/health#show", as: :rails_health_check
 
-  # Render dynamic PWA files from app/views/pwa/*
+  # pwa関連のルーティング
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
-
-  # Defines the root path route ("/")
-  # root "posts#index"
 end
+

@@ -1,2 +1,51 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
+
+.card {
+  margin: 0 auto 60px;
+  max-width: 376px;
+  height: 370px;
+}
+
+.card-body p {
+  text-align: left;
+}
+
+.field-disabled {
+  opacity: 0.5;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.field-disabled .field-input {
+  background-color: #f8f9fa;
+  cursor: not-allowed;
+}
+
+.field-disabled .field-label {
+  color: #6c757d;
+}
+
+.field-disabled .field-help {
+  color: #adb5bd;
+}
+
+.field-enabled {
+  opacity: 1;
+  pointer-events: auto;
+  transition: all 0.3s ease;
+}
+
+.post-type-radio:checked + label {
+  font-weight: bold;
+  color: #0d6efd;
+}
+
+/* ファイル選択時のプレビュー機能 */
+.image-preview {
+  max-width: 200px;
+  max-height: 200px;
+  margin-top: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}

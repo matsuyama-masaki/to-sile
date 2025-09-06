@@ -1,0 +1,24 @@
+<div class="mb-5 mt-5 border p-5 col-md-6 offset-md-3 bg-light rounded shadow col-sm-10 offset-sm-1">
+  <h2 class="text-center pb-4 fw-bold">パスワードリセット申請</h2>
+
+  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  <%# メールアドレス %>
+  <div class="mb-1 text-left">
+    <%= f.label :email %><br />
+  </div>
+  <div class="mb-3">
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control" %>
+  </div>
+
+  <%# パスワードリセット送信ボタン %>
+  <div class="mb-4 mt-4 text-center">
+    <%= f.submit t('.reset_password_mail_send'), class: "btn btn-primary" %>
+  </div>
+    <% end %>
+
+  <div class="mb-3 text-center">
+    <%= render "devise/shared/links" %>
+  </div>
+</div>

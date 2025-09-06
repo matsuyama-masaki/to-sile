@@ -41,11 +41,23 @@ Rails.application.configure do
   # caching is enabled.
   config.action_mailer.perform_caching = false
 
+  # ActiveStorageのURL生成に必要
+  Rails.application.routes.default_url_options = { host: 'localhost:3000' }
+  
+  # letter_opener_webの設定追加 ここから
   config.action_mailer.default_url_options = { host: "localhost", port: 3000 }
+# letter_opener_webを使用してメールを確認
+  config.action_mailer.delivery_method = :letter_opener_web
+  # メール送信を有効化
+  config.action_mailer.perform_deliveries = true
+  # メール送信エラーを表示
+  config.action_mailer.raise_delivery_errors = true
+  # メールのキャッシュを無効化（開発環境では推奨）
+  config.action_mailer.perform_caching = false
+  # letter_opener_webの設定追加 ここまで
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
-
   # Raise exceptions for disallowed deprecations.
   config.active_support.disallowed_deprecation = :raise
 
