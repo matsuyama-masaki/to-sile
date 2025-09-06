@@ -1,0 +1,32 @@
+<div class="mb-5 mt-5 border p-5 col-md-6 offset-md-3 bg-light rounded shadow col-sm-10 offset-sm-1">
+  <h2 class="text-center pb-4 fw-bold">パスワードリセット</h2>
+
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+  <%= f.hidden_field :reset_password_token %>
+
+  <div class="mb-1 text-left">
+    <%= f.label :password, t('.new_password') %>
+    <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> 桁以上で半角英数字のみ)</em><br />
+    <% end %>
+  </div>
+  <div class="mb-3">
+    <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class:"form-control" %>
+  </div>
+
+  <div class="mb-1 text-left">
+    <%= f.label :password_confirmation, t('.confirm_new_password') %><br />
+  </div>
+  <div class="mb-3">
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control" %>
+  </div>
+
+  <div class="mb-4 mt-4 text-center">
+    <%= f.submit t('.reset_password_execution'), class: "btn btn-primary"  %>
+  </div>
+  <% end %>
+
+  <div class="mb-3 text-center">
+    <%= render "devise/shared/links" %>
+  </div>

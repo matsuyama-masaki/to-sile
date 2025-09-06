@@ -1,0 +1,68 @@
+<div class="mb-5 mt-5 border p-5 col-md-6 offset-md-3 bg-light rounded shadow col-sm-10 offset-sm-1">
+  <h2 lass="text-center pb-4 fw-bold">プロフィール変更</h2>
+  
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+      
+    <%# ユーザ名 %>
+    <div class="mb-1 mt-4 text-left">
+    <%= f.label :name, "ユーザ名", class: "form-label" %>
+    </dev>
+    <div class="mb-3">
+    <%= f.text_field :name, autofocus: true, class: "form-control" %>
+    </div>
+
+      <%# 現在のパスワード %>
+      <div class="mb-1 mt-4 text-left">
+        <%= f.label :current_password %><br />
+      </div>
+      <div class="mb-3">
+        <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control" %>
+      </div>
+
+      <%# パスワード %>
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+      <% end %>
+
+      <div class="mb-1 text-left">
+        <%= f.label :password %> <%= t('.leave_blank_if_you_don_t_want_to_change_it') %> <br />
+      </div>
+      <div class="mb-3">
+        <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+        <% if @minimum_password_length %>
+          <em><%= @minimum_password_length %> 桁以上で半角英数字のみ</em>
+        <% end %>
+      </div>
+
+      <%# パスワード確認 %>
+      <div class="mb-1 text-left">
+        <%= f.label :password_confirmation %><br />
+      </div>
+      <div class="mb-3">
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+      </div>
+
+      <div class="actions mb-4 mt-4 text-center">
+        <%= f.submit "変更する", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+
+  <div class="card mt-4">
+    <div class="card-header bg-danger text-white text-center">
+      <h5 class="mb-0">アカウントの削除</h5>
+    </div>
+    <div class="card-body text-center">
+      <p class="text-muted text-center">アカウントが削除され、ログインできなくなります。</p> 
+      <%= button_to "アカウントを削除", 
+                    registration_path(resource_name), 
+                    data: { 
+                      turbo_confirm: t('.are_you_sure') 
+                    }, 
+                    method: :delete, 
+                    class: "btn btn-danger text-center" %>
+    </div>
+  </div>
+  <div class="mt-2 text-center">
+    <%= link_to "戻る", :back %>
+  </div>

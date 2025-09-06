@@ -10,7 +10,21 @@ module Myapp
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.2
+    
+    # 全環境共通のメール設定
+    config.action_mailer.default_options = {
+    from: 'noreply@example.com'
+    }
+    
+    # タイムゾーン（全環境で日本時間）
+    config.time_zone = 'Tokyo'
 
+    # Active Storageとmini_magick連携の設定
+    config.active_storage.variant_processor = :mini_magick
+    
+    # 日本語をデフォルトロケールに設定
+    config.i18n.default_locale = :ja
+    
     # Please, add to the `ignore` list any other `lib` subdirectories that do
     # not contain `.rb` files, or that should not be reloaded or eager loaded.
     # Common ones are `templates`, `generators`, or `middleware`, for example.

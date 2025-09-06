@@ -1,0 +1,41 @@
+<%# 投稿一覧画面 %>
+<div class="posts-index">
+  <h1>投稿一覧</h1>
+  
+  <%= link_to "新規投稿", new_post_path, class: "btn btn-primary mb-3" %>
+  
+  <div class="row">
+    <% @posts.each do |post| %>
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <%# 画像の場合、リサイズして表示する %>
+          <% if post.image.attached? %>
+            <%= image_tag post.image.variant(resize_to_fill: [400, 400]), 
+                          alt: post.title, 
+                          class: "card-img-top" %>
+          
+          <%# 動画の場合、YouTubeの埋め込み画像を表示する %>
+          <% elsif post.youtube_video_id %>
+            <%= image_tag post.youtube_thumbnail_url, 
+                          alt: "#{post.title} - YouTube動画", 
+                          class: "card-img-top youtube-thumbnail" %>
+          <% else %>
+            <%# 画像をがない場合、「画像なし」を表示する %>
+            <div class="card-img-top d-flex align-items-center justify-content-center" 
+                 style="height: 300px; background-color: #f8f9fa;">
+              <span class="text-muted">画像なし</span>
+            </div>
+          <% end %>
+          
+          <div class="card-body">
+            <h5 class="card-title"><%= post.title %></h5>
+            <p class="card-text"><%= truncate(post.review_text, length: 100) %></p>
+            <div class="d-flex justify-content-between align-items-center">
+              <%= link_to "詳細", post_path(post), class: "btn btn-sm btn-outline-primary" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,134 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-lg-8 mx-auto">
+      <div class="card">
+        <div class="card-header">
+          <h2><%= post.persisted? ? "投稿を編集" : "新規投稿" %></h2>
+        </div>
+        <div class="card-body">
+          <%= form_with model: post, local: true, html: { id: 'post-form' } do |f| %>
+            <% if post.errors.any? %>
+              <div class="alert alert-danger">
+                <h4><%= pluralize(post.errors.count, "error") %> この投稿の保存を禁止しました:</h4>
+                <ul>
+                  <% post.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+
+            <!-- 投稿タイプ選択 -->
+            <div class="form-group mb-4">
+              <%= f.label :post_type, "投稿タイプ", class: "form-label fw-bold" %>
+              <div class="mt-2">
+                <div class="form-check form-check-inline">
+                  <%= f.radio_button :post_type, 'book', 
+                                      id: 'post_type_book', 
+                                      class: 'form-check-input post-type-radio' %>
+                  <%= f.label :post_type_book, "書籍", class: "form-check-label" %>
+                </div>
+                <div class="form-check form-check-inline">
+                  <%= f.radio_button :post_type, 'video', 
+                                      id: 'post_type_video', 
+                                      class: 'form-check-input post-type-radio' %>
+                  <%= f.label :post_type_video, "動画", class: "form-check-label" %>
+                </div>
+              </div>
+            </div>
+
+            <!-- タイトル -->
+            <div class="form-input mb-3">
+              <%= f.label :title, "タイトル", class: "form-label" %>
+              <%= f.text_field :title, class: "form-control" %>
+            </div>
+          
+            <!-- 画像アップロード（書籍用）-->
+            <div class="form-group mb-3">
+              <%= f.label :image, "画像", class: "form-label field-label" %>
+              <%= f.file_field :image, 
+                              class: "form-control field-input", 
+                              id: "image-input",
+                              accept: 'image/*' %>
+              
+              <!-- 編集時に現在の画像を表示 -->
+              <% if post.persisted? && post.image.present? %>
+                <div class="mt-2">
+                  <p class="text-muted">現在の画像:</p>
+                  <%= image_tag url_for(post.image), class: "img-thumbnail", style: "max-width: 200px;" %>
+                </div>
+              <% end %>
+              
+              <small class="form-text text-muted field-help">
+                JPEG, JPG, PNG, GIF形式のファイルをアップロードできます（最大5MB）
+              </small>
+            </div>
+
+            <!-- YouTube URL（動画用）-->
+            <div class="form-input mb-3">
+              <%= f.label :video_url, "YouTube URL", class: "form-label" %>
+              <%= f.url_field :video_url,
+                              class: "form-control field-input", 
+                              id: "youtube-input",
+                              placeholder: "https://www.youtube.com/watch?v=..." %>
+                              
+              <!-- 編集時にYouTubeサムネイルを表示 -->
+              <% if post.persisted? && post.post_type == 'video' && post.video_url.present? %>
+                <div class="mt-2" id="youtube-thumbnail">
+                  <p class="text-muted">動画サムネイル:</p>
+                  <% thumbnail_url = post.youtube_thumbnail_url %>
+                  <% if thumbnail_url %>
+                    <img src="<%= thumbnail_url %>" 
+                         class="img-thumbnail" 
+                         style="max-width: 320px;"
+                         alt="YouTube動画サムネイル"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <div style="display: none;" class="alert alert-warning">
+                      サムネイルを読み込めませんでした
+                    </div>
+                  <% else %>
+                    <div class="alert alert-warning">
+                      有効なYouTube URLを入力してください
+                    </div>
+                  <% end %>
+                </div>
+              <% end %>
+              
+              <small class="form-text text-muted">
+                YouTubeの動画URLを入力してください
+              </small>
+            </div>
+
+            <!-- カテゴリ -->
+            <div class="form-input mb-3">
+              <%= f.label :category, "カテゴリ", class: "form-label" %>
+              <%= f.select :category, 
+                          {'スキャルピング': 'scalping', 'デイトレ': 'day', 'スウィング': 'swing'}, 
+                          { include_blank: "選択してください" },
+                          { class: "form-select" } %>
+            </div>
+
+            <!-- レビュー内容 -->
+            <div class="mb-3">
+              <div class="form-input">
+                <%= f.label :review_text, "感想", class: "form-label" %>
+                <%= f.text_area :review_text, rows: 10, class: "form-control" %>
+              </div>
+            </div>
+
+            <!-- 送信ボタン -->
+            <div class="mb-3">
+              <div class="button-container">
+                <%= f.submit post.persisted? ? "更新する" : "投稿する", 
+                            class: "btn btn-primary me-2" %>
+                <%= link_to "キャンセル", 
+                            post.persisted? ? post_path(post) : posts_path, 
+                            class: "btn btn-secondary" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

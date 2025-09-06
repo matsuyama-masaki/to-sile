@@ -9,6 +9,11 @@
 
     <%= yield :head %>
 
+    <!-- Googleフォント -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap" rel="stylesheet">
+
     <link rel="manifest" href="/manifest.json">
     <link rel="icon" href="/icon.png" type="image/png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
@@ -18,6 +23,9 @@
   </head>
 
   <body>
+    <%# ナビゲーションバー %>
+    <%= render "shared/header" %>
+
     <%= yield %>
   </body>
 </html>

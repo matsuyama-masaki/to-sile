@@ -50,6 +50,7 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
+  gem 'letter_opener_web', '~> 3.0'
 end
 
 group :test do
@@ -57,3 +58,12 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+# ユーザ認証機能
+gem 'devise', '= 4.9.3'
+
+# 画像処理機能
+gem 'image_processing', '~> 1.2'
+
+# 検索機能
+gem 'ransack'
