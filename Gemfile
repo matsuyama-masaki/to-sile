@@ -60,7 +60,7 @@ group :test do
 end
 
 # ユーザ認証機能
-gem 'devise', '= 4.9.3'
+gem 'devise', '4.9.4'
 
 # 画像処理機能
 gem 'image_processing', '~> 1.2'
