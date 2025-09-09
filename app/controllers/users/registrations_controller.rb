@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
@@ -10,9 +9,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    super do |resource|
+      # 登録失敗時にバリデーションエラーをフラッシュメッセージに変換
+      if resource.errors.any?
+        flash.now[:danger] = resource.errors.full_messages.join(', ')
+      end
+    end
+  end
 
   # GET /resource/edit
   # def edit
@@ -20,9 +24,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    super do |resource|
+      # 更新失敗時にバリデーションエラーをフラッシュメッセージに変換
+      if resource.errors.any?
+        flash.now[:danger] = resource.errors.full_messages.join(', ')
+      end
+    end
+  end
 
   # DELETE /resource
   # def destroy
@@ -39,7 +48,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # protected
-
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_up_params
   #   devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])

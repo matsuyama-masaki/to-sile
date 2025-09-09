@@ -1,0 +1,83 @@
+// 変数定義
+$primary-color: #1a1a2e;
+$secondary-color: #16213e;
+$accent-color: #0f3460;
+$gold-color: #ffd700;
+$success-color: #00d4aa;
+$text-light: #ffffff;
+$text-muted: #b8b8b8;
+
+// ヒーローセクション
+.hero-section {
+  background: linear-gradient(135deg, $primary-color 0%, $secondary-color 50%, $accent-color 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  
+  // アニメーション背景
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%23ffffff" stroke-width="0.1" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+    animation: float 20s ease-in-out infinite;
+  }
+  
+  .hero-content {
+    text-align: center;
+    color: $text-light;
+    z-index: 2;
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .hero-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(45deg, $text-light, $gold-color);
+    -webkit-background-clip: text;
+    background-clip: text; 
+    -webkit-text-fill-color: transparent;
+    color: transparent; 
+    animation: fadeInUp 1s ease-out;
+    
+    @media (max-width: 768px) {
+      font-size: 2.5rem;
+    }
+  }
+  
+  .hero-subtitle {
+    font-size: 1.3rem;
+    margin-bottom: 2.5rem;
+    color: $text-muted;
+    animation: fadeInUp 1s ease-out 0.2s both;
+  }
+  
+  .hero-buttons {
+    animation: fadeInUp 1s ease-out 0.4s both;
+    
+    .btn {
+      margin: 0 10px 10px 0;
+      padding: 15px 30px;
+      font-weight: 600;
+      border-radius: 50px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+      
+      &.btn-primary {
+        background: linear-gradient(45deg, $success-color, $gold-color);
+        border: none;
+        box-shadow: 0 4px;
+      }
+    }
+  }
+}

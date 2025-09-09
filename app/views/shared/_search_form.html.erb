@@ -1,0 +1,17 @@
+<div class="header-search">
+  <div class="collapse navbar-collapse">
+    <div class="navbar-nav mx-auto">
+      <%= search_form_for @q, url: posts_path, html: { class: "d-flex search-form custom-search-wrapper" } do |f| %>
+        <div class="input-group  custom-input-group">
+          <%= f.search_field :title_or_review_text_cont, 
+                              class: "form-control custom-search-input", 
+                              placeholder: "検索キーワード", 
+                              style: "min-width: 300px;" %>
+          <button class="btn btn-outline-light custom-search-btn" type="submit">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,41 +1,67 @@
 <%# 投稿一覧画面 %>
-<div class="posts-index">
-  <h1>投稿一覧</h1>
-  
-  <%= link_to "新規投稿", new_post_path, class: "btn btn-primary mb-3" %>
-  
-  <div class="row">
-    <% @posts.each do |post| %>
-      <div class="col-md-4 mb-4">
-        <div class="card">
-          <%# 画像の場合、リサイズして表示する %>
-          <% if post.image.attached? %>
-            <%= image_tag post.image.variant(resize_to_fill: [400, 400]), 
-                          alt: post.title, 
-                          class: "card-img-top" %>
-          
-          <%# 動画の場合、YouTubeの埋め込み画像を表示する %>
-          <% elsif post.youtube_video_id %>
-            <%= image_tag post.youtube_thumbnail_url, 
-                          alt: "#{post.title} - YouTube動画", 
-                          class: "card-img-top youtube-thumbnail" %>
-          <% else %>
-            <%# 画像をがない場合、「画像なし」を表示する %>
-            <div class="card-img-top d-flex align-items-center justify-content-center" 
-                 style="height: 300px; background-color: #f8f9fa;">
-              <span class="text-muted">画像なし</span>
-            </div>
-          <% end %>
-          
-          <div class="card-body">
-            <h5 class="card-title"><%= post.title %></h5>
-            <p class="card-text"><%= truncate(post.review_text, length: 100) %></p>
-            <div class="d-flex justify-content-between align-items-center">
-              <%= link_to "詳細", post_path(post), class: "btn btn-sm btn-outline-primary" %>
-            </div>
+<%# 新規投稿ボタン %>
+<div class="d-flex justify-content-end">
+  <%= link_to "新規投稿", new_post_path, class: "btn btn-primary mb-3 mt-3 me-5 btn-lg" %>
+</div>
+
+<%# 表示件数表示 %>
+<div class="search-results-info mb-3 text-center">
+  <p>
+    <%= @posts.total_count %>件中
+    <%= @posts.offset_value + 1 %>-<%= [@posts.offset_value + @posts.limit_value, @posts.total_count].min %>件を表示
+  </p>
+</div>
+
+<%# 投稿表示箇所 %>
+<div class="page-container">
+  <div class="content-wrapper">
+    <div class="container-fluid">
+      <div class="row g-4">
+        <% @posts.each do |post| %>
+          <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+            <%= link_to post_path(post), class: "text-decoration-none" do %>
+              <div class="post-card">
+                <%# 書籍の表示 %>
+                <div class="post-image-container <%= 'book-style' if post.category == '書籍' %>">
+                  <% if post.image.attached? %>
+                    <%= image_tag post.image.variant(resize_to_fill: [400, 300]), 
+                                  alt: post.title, 
+                                  class: "post-image" %>
+                  
+                    <%# YouTubeの表示 %>
+                    <% elsif post.youtube_video_id %>
+                      <%= image_tag post.youtube_thumbnail_url, 
+                                    alt: "#{post.title} - YouTube動画", 
+                                    class: "post-image" %>
+                  <% end %>
+                </div>
+
+                <%# オーバーレイ情報 %>
+                <%# タイトル %>
+                <div class="post-info">
+                  <h6 class="post-title text-center"><%= truncate(post.title) %></h6>
+
+                  <%# 投稿日 %>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <small class="text-muted">
+                      <%= post.created_at&.strftime("%Y年%m月%d日") %>
+                    </small>
+                    
+                    <%# カテゴリ %>
+                    <% if post.category.present? %>
+                      <span class="badge">
+                        <%= post.category %>
+                      </span>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
           </div>
-        </div>
+        <% end %>
       </div>
-    <% end %>
+    </div>
   </div>
 </div>
+<%# ページネーション表示 %>
+<%= render 'pagenation' %>

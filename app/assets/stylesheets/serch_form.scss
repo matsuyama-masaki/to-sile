@@ -1,0 +1,51 @@
+.custom-search-wrapper {
+  .custom-input-group {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 25px;
+    overflow: hidden;
+  }
+// 検索フォーム
+  .custom-search-input {
+    background: rgb(255, 250, 245) !important;
+    border: 2px solid #635a40 !important;
+    border-right: none !important;
+    color: #333 !important;
+    padding: 12px 20px !important;
+    font-size: 14px !important;
+    min-width: 300px !important;
+    border-radius: 25px 0 0 25px !important;
+    
+    &::placeholder {
+      color: #666 !important;
+      font-style: italic !important;
+    }
+    
+    &:focus {
+      background: rgba(255, 255, 255, 1) !important;
+      border-color: #8b8a2e !important;
+      box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.2) !important;
+      outline: none !important;
+    }
+  }
+
+// 検索ボタン
+  .custom-search-btn {
+    background: linear-gradient(135deg, #beb79f 0%, #6b5b47 100%) !important;
+    border: 2px solid #635a40 !important;
+    border-left: none !important;
+    color: #333 !important;
+    padding: 12px 20px !important;
+    border-radius: 0 25px 25px 0 !important;
+    transition: all 0.3s ease !important;
+    
+    &:hover {
+      background: linear-gradient(135deg, #a5a093 0%, #8b8a2e 100%) !important;
+      transform: translateY(-1px) !important;
+      box-shadow: 0 4px 12px rgba(255, 193, 7, 0.3) !important;
+    }
+    
+    i {
+      font-size: 16px !important;
+    }
+  }
+}

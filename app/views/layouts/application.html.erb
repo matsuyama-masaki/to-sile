@@ -26,6 +26,13 @@
     <%# ナビゲーションバー %>
     <%= render "shared/header" %>
 
+    <%# エラーメッセージ表示 %>
+    <% flash.each do |type, message| %>
+    <div class="alert alert-<%= type == 'notice' ? 'success' : 'danger' %>">
+      <%= message %>
+    </div>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>

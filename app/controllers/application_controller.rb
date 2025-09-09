@@ -24,12 +24,10 @@ class ApplicationController < ActionController::Base
   end
 
   protected
+  # ストロングパラメータ
   def configure_permitted_parameters
-    # サインアップで、name、email、passwod,password確認を許可する
+    # サインアップで、name、email、passwodを許可する
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
-
-    # サインインで、email、passwodを許可する
-    devise_parameter_sanitizer.permit(:sign_in, keys: [:email])
     
     # パスワードリセットで、name、email、passwodを許可する
     devise_parameter_sanitizer.permit(:account_update, keys: [:name])

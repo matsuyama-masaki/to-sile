@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
-  # ユーザー認証関連のルーティングをDeviseで設定
-  devise_for :users
-
-  # ルートディレクトリへのアクセスはpostsコントローラのindexアクションへ
-  get root "posts#index"
+  # top画面へのルーティング
+  root 'static_pages#top'
+  
+  # ユーザー認証関連のルーティング
+  devise_for :users, controllers: {
+    sessions: 'users/sessions',
+    registrations: 'users/registrations',
+    passwords: 'users/passwords'
+  }
 
   # 投稿関連のルーティング
   resources :posts, only: %i[index new create show edit update destroy]

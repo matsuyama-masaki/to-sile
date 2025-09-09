@@ -1,22 +1,22 @@
 class PostsController < ApplicationController
-  # 投稿一覧、投稿詳細以外は、ログインを要求する
+  # 投稿一覧、投稿詳細以外の画面遷移は、ログインを要求する
   before_action :authenticate_user!, except: %i[index show]
 
   # 詳細、編集、更新、削除のみ、事前にIDに基づいた投稿を検索する
   before_action :set_post, only: %i[show edit update destroy]
-  
+
   # 編集、更新、削除時のみ投稿作成者チェックを実施する。
   before_action :check_owner, only: %i[edit update destroy]
 
   before_action :set_current_url_options
 
   def index
-    # 投稿日が新しい順で9投稿以上でページネーションする一覧を表示する
+    # 投稿日が新しい順で一覧を表示する
      @posts = @q.result(distinct: true)
                 .includes(:user, image_attachment: :blob)
                 .order(created_at: :desc)
-                # .page(params[:page])
-                # .per(9)
+                .page(params[:page])
+                .per(12)
   end
 
   def new
@@ -32,7 +32,7 @@ class PostsController < ApplicationController
     
     # 入力した投稿内容を保存できたら、一覧を表示する
     if @post.save
-      redirect_to posts_path, notice: "投稿を作成しました。"
+      redirect_to posts_path, notice: t('defaults.flash_message.created', item: Post.model_name.human)
     else
       # 保存できない場合、入力フォームを再表示する
       render :new, status: :unprocessable_entity
@@ -50,7 +50,7 @@ class PostsController < ApplicationController
   def update
     # 投稿を更新する
     if @post.update(post_params)
-      redirect_to posts_path, notice: "投稿を更新しました。"
+      redirect_to posts_path, notice: t('defaults.flash_message.updated', item: Post.model_name.human)
     else
       # 更新できない場合、編集フォームを再表示する
       render :edit, status: :unprocessable_entity
@@ -60,7 +60,7 @@ class PostsController < ApplicationController
   def destroy
     # 投稿を削除する
     @post.destroy
-    redirect_to posts_path, notice: "投稿を削除しました。"
+    redirect_to posts_path, notice: t('defaults.flash_message.deleted', item: Post.model_name.human)
   end
 
   private
