@@ -67,3 +67,7 @@ gem 'image_processing', '~> 1.2'
 
 # 検索機能
 gem 'ransack'
+
+# ページネーション
+gem 'kaminari'
+gem 'bootstrap5-kaminari-views'

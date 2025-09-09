@@ -1,51 +1,36 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
+@import 'top';
+@import 'posts/index';
+@import 'pagenation';
+@import 'serch_form';
+@import 'form';
+@import 'button';
+@import 'header';
+@import 'badge';
 
-.card {
-  margin: 0 auto 60px;
-  max-width: 376px;
-  height: 370px;
+html, body {
+  height: 100%;
+  background: linear-gradient(135deg, #f5f1eb 0%, #e8dcc6 100%);
+  font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+  color: #6b5b47;
+  overflow-x: hidden;
 }
 
-.card-body p {
-  text-align: left;
+// リンク
+a {
+  color: #8b785d;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  
+  &:hover {
+    color: #6b5b47;
+  }
 }
 
-.field-disabled {
-  opacity: 0.5;
-  pointer-events: none;
-  transition: all 0.3s ease;
-}
-
-.field-disabled .field-input {
-  background-color: #f8f9fa;
-  cursor: not-allowed;
-}
-
-.field-disabled .field-label {
-  color: #6c757d;
-}
-
-.field-disabled .field-help {
-  color: #adb5bd;
-}
-
-.field-enabled {
-  opacity: 1;
-  pointer-events: auto;
-  transition: all 0.3s ease;
-}
-
-.post-type-radio:checked + label {
-  font-weight: bold;
-  color: #0d6efd;
-}
-
-/* ファイル選択時のプレビュー機能 */
-.image-preview {
-  max-width: 200px;
-  max-height: 200px;
-  margin-top: 10px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+.card-header {
+  background: linear-gradient(135deg, #dbc0c0 0%, #e2385d 100%);
+  color: #6b4747;
+  font-weight: 600;
+  text-align: center;
 }

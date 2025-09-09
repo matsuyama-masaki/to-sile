@@ -1,0 +1,30 @@
+ja:
+  # フラッシュメッセージ用
+  defaults:
+    flash_message:
+      created: "%{item}を作成しました"
+      updated: "%{item}を更新しました"
+      deleted: "%{item}を削除しました"
+
+  # ActiveRecord用（モデル名やバリデーション）
+  activerecord:
+    models:
+      user:
+        one: ユーザー
+        other: ユーザー
+      post: 投稿
+    attributes:
+      post:
+        title: タイトル
+        review_text: 本文
+        post_type: 投稿タイプ
+        category: カテゴリ
+        image: 画像
+        video_url: YuTube URL
+    errors:
+      messages:
+        blank: "を入力してください"
+        too_short: "は%{count}文字以上で入力してください"
+        too_long: "は%{count}文字以内で入力してください"
+        invalid: "は正しい形式で入力してください"
+    

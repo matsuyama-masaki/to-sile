@@ -1,54 +1,62 @@
 <%# ナビゲーションバー%>
 <header>
-  <nav class="navbar navbar-expand-lg bg-body-tertiary p-3" data-bs-theme="dark">
-    <div class="container-fluid">
-      <a class="navbar-brand fw-bold" href="#">トウシル</a>
-
-      <%# レスポンシブ対応のトグルボタン %>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+  <nav class="navbar navbar-expand-lg bg-body-tertiary p-3">
+    <%# ロゴ %>
+    <a class="navbar-brand fw-bold" href="#">トウシル</a>
+      <img src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="Bootstrap" width="30" height="24">
+    </a>
+    <%# レスポンシブ対応のトグルボタン %>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <%# ログイン時 中央のユーザーメニュー %>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    </button>
+    <%# 投稿一覧 %>
+    <div class="d-flex justify-content-center w-50">
+      <ul class="navbar-nav ms-auto align-items-center">
+        <li class="nav-item pt-1 ms-3">
+            <%= link_to "投稿一覧", posts_path, class: "nav-link fw-bold me-3" %>
+        </li>
+      </ul>
+      <%# 検索フォーム表示 %>
+      <%= render 'shared/search_form', q: @q, url: posts_path %>
+    </div>
+    <%# ログイン時のメニュー %>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav ms-auto align-items-center">
+        <% if user_signed_in? %>
+        <%# マイページ %>
+        <li class="nav-item dropdown pt-1 ms-3">
+          <%= link_to "マイページ", 
+              "#", 
+              class: "nav-link dropdown-toggle text-white fw-bold", 
+              role: "button", 
+              data: { bs_toggle: "dropdown" }, 
+              aria: { expanded: "false"} %>
+          <%# ドロップダウン %>
+          <%# プロフィール編集 %>
+          <ul class="dropdown-menu dropdown-menu-end pt-1 ms-3">
+            <li><%= link_to "プロフィール編集", 
+                    edit_user_registration_path, 
+                    class: "dropdown-item text-white fw-bold" %></li>
+            <li><hr class="dropdown-divider"></li>
+            <%# ログアウト %>
+            <li><%= link_to "ログアウト", 
+                    destroy_user_session_path, 
+                    data: { "turbo-method": :delete, 
+                            "turbo-confirm": "ログアウトしますか？" }, 
+                    class: "dropdown-item text-white fw-bold" %>
+            </li>
+          </ul>
+        <% else %>
+        </li>
+      </ul>
+      </div>
+        <%# 未ログイン時のメニュー%>
         <ul class="navbar-nav ms-auto align-items-center">
-          <% if user_signed_in? %>
-            <li class="nav-item pt-1 ms-3">
-              <%= link_to "投稿一覧", posts_path, class: "nav-link text-white fw-bold" %>
-            </li>
-            
-            <%# 検索フォーム %>
-            <%= render 'search_form', q: @q, url: posts_path %>
-
-            <%# ログイン時 右側のユーザーメニュー %>
-            <li class="nav-item dropdown pt-1 ms-3">
-              <%= link_to "マイページ", 
-                  "#", 
-                  class: "nav-link dropdown-toggle text-white fw-bold", 
-                  role: "button", 
-                  data: { bs_toggle: "dropdown" }, 
-                  aria: { expanded: "false"} %>
-
-              <%# ドロップダウン %>
-              <ul class="dropdown-menu dropdown-menu-end pt-1 ms-3">
-                <li><%= link_to "プロフィール編集", 
-                        edit_user_registration_path, 
-                        class: "dropdown-item text-white fw-bold" %></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><%= link_to "ログアウト", 
-                        destroy_user_session_path, 
-                        data: { "turbo-method": :delete, 
-                                "turbo-confirm": "ログアウトしますか？" }, 
-                        class: "dropdown-item text-white fw-bold" %>
-                </li>
-              </ul>
-            </li>
-
-          <%# 未ログイン時 ユーザーメニュー%>
-          <% else %>
+          <%# サインアップ %>
           <li class="nav-item pt-1 ms-3">
             <%= link_to "サインアップ", new_user_registration_path, class:"nav-link text-white fw-bold" %>
           </li>
+          <%# ログイン %>
           <li class="nav-item pt-1 ms-3">
             <%= link_to "ログイン", new_user_session_path, class:"nav-link text-white fw-bold" %>
           </li>

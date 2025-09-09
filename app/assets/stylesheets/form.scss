@@ -1,0 +1,51 @@
+// フォーム全体のスタイリング
+.form-container {
+  border-radius: 15px !important;
+//   padding: 30px !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2) !important;
+  margin: 20px auto !important;
+}
+
+// タイトル
+.card-title {
+  text-align: center;
+  font-weight: 600  !important;
+  color: #6b4747  !important;
+
+}
+
+// カードボディ
+.card {
+  background-color: rgb(204, 193, 173)!important;
+}
+
+// 入力フィールドのスタイリング
+.form-control {
+  background-color: rgb(255, 249, 238) !important;
+  border: 2px solid #e1e5e9 !important;
+  border-radius: 8px !important;
+  padding: 12px 15px !important;
+  font-size: 16px !important;
+  transition: all 0.3s ease !important;
+  
+  &:focus {
+    // background-color: white !important;
+    border-color: #6e6b3efd !important;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1) !important;
+    outline: none !important;
+  }
+  
+  &::placeholder {
+    color: #887b7b !important;
+    font-style: italic !important;
+  }
+}
+
+// ラベルのスタイリング
+.form-label {
+  color: rgb(145, 122, 122) !important;
+  font-weight: 600 !important;
+  font-size: 16px !important;
+  margin-bottom: 8px !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important;
+}

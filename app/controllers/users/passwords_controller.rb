@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 class Users::PasswordsController < Devise::PasswordsController
   # GET /resource/password/new
   # def new
@@ -7,9 +6,14 @@ class Users::PasswordsController < Devise::PasswordsController
   # end
 
   # POST /resource/password
-  # def create
-  #   super
-  # end
+  def create
+    super do |resource|
+      # パスワードリセット申請時にバリデーションエラーをフラッシュメッセージに変換
+      if resource.errors.any?
+        flash.now[:danger] = resource.errors.full_messages.join(', ')
+      end
+    end
+  end
 
   # GET /resource/password/edit?reset_password_token=abcdef
   # def edit
@@ -17,12 +21,16 @@ class Users::PasswordsController < Devise::PasswordsController
   # end
 
   # PUT /resource/password
-  # def update
-  #   super
-  # end
+  def update
+    super do |resource|
+      # パスワードリセット更新時にバリデーションエラーをフラッシュメッセージに変換
+      if resource.errors.any?
+        flash.now[:danger] = resource.errors.full_messages.join(', ')
+      end
+    end
+  end
 
   # protected
-
   # def after_resetting_password_path_for(resource)
   #   super(resource)
   # end
