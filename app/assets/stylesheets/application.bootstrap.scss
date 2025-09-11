@@ -1,13 +1,14 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
 @import 'top';
-@import 'posts/index';
+@import 'index';
 @import 'pagenation';
 @import 'serch_form';
 @import 'form';
 @import 'button';
 @import 'header';
 @import 'badge';
+@import 'logo';
 
 html, body {
   height: 100%;

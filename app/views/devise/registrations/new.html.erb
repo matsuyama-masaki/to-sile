@@ -1,14 +1,10 @@
 <div class="container mt-4">
-  <div class="form-container">
-    <div class="row">
-      <div class="col-lg-12 mx-auto">
-        <div class="card px-4">
-          <div class="card-title pt-3">
-            <h2 class="pb-4 fw-bold">アカウント登録</h2>
-          </div>
-
+  <div class="row">
+    <div class="col-lg-12 mx-auto">
+      <div class="card mt-2">
+        <div class="card-body">
+          <h2 class="card-title">アカウント登録</h2>
           <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "needs-validation", novalidate: true }) do |f| %>
-          
           <%# ユーザ名 %>
           <div class="mb-1 text-left form-label fw-bold">
             <%= f.label :name %><br />
@@ -16,7 +12,6 @@
           <div class="mb-3">
             <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control" %>
           </div>
-          
           <%# メールアドレス %>
           <div class="mb-1 text-left form-label fw-bold">
             <%= f.label :email %><br />
@@ -24,18 +19,15 @@
           <div class="mb-3">
             <%= f.email_field :email, autocomplete: "email", class: "form-control" %>
           </div>
-          
           <%# パスワード %>
           <div class="mb-1 text-left form-label fw-bold">
             <%= f.label :password %>
-            <% if @minimum_password_length %>
-            <em>(<%= @minimum_password_length %> 桁以上で半角英数字のみ)</em>
-            <% end %><br />
-          </div>
           <div class="mb-3">
-            <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+            <%= f.password_field :password, 
+                                  autocomplete: "new-password", 
+                                  class: "form-control", 
+                                  placeholder: "#{@minimum_password_length}桁以上で半角英数字のみ" %>
           </div>
-          
           <%# パスワード確認 %>
           <div class="mb-1 text-left form-label fw-bold">
             <%= f.label :password_confirmation %><br />
@@ -43,13 +35,11 @@
           <div class="mb-3">
             <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
           </div>
-          
           <%# アカウント登録ボタン %>
           <div class="mb-3 mt-4 text-center">
             <%= f.submit t('.sign_up'), class: "btn btn-primary" %>
           </div>
           <% end %>
-          
           <%# リンク %>
           <div class="mb-4 text-center fw-bold">
           <%= render "devise/shared/links" %>

@@ -27,12 +27,9 @@
     <%= render "shared/header" %>
 
     <%# エラーメッセージ表示 %>
-    <% flash.each do |type, message| %>
-    <div class="alert alert-<%= type == 'notice' ? 'success' : 'danger' %>">
-      <%= message %>
-    </div>
-    <% end %>
-
+    <%= render 'shared/flash_messages' %>
+    
+    <%# 各viewを表示 %>
     <%= yield %>
   </body>
 </html>

@@ -49,3 +49,22 @@
   margin-bottom: 8px !important;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important;
 }
+
+// YouTube サムネイル関連のスタイル
+.youtube-thumbnail-container {
+  .youtube-thumbnail {
+    max-width: 320px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+    
+    &:hover {
+      transform: scale(1.02);
+    }
+  }
+  
+  .youtube-error-message {
+    margin-top: 0.5rem;
+    border-radius: 8px;
+  }
+}

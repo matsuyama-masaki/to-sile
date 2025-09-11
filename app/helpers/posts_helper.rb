@@ -1,4 +1,5 @@
 module PostsHelper
+  # サムネイルの処理
   def youtube_thumbnail_image(post, size: :medium, **options)
     return unless post.youtube_video_id
 
@@ -17,6 +18,7 @@ module PostsHelper
               **options
   end
 
+  # 詳細画面の埋め込み動画の処理
   def youtube_embed_with_thumbnail(post, **options)
     return unless post.youtube_video_id
 
@@ -39,5 +41,10 @@ module PostsHelper
                     allowfullscreen: true
       end
     end
+  end
+
+  # 投稿日表示処理
+  def formatted_post_date(post)
+    post.created_at.strftime("%Y年%m月%d日 %H:%M")
   end
 end

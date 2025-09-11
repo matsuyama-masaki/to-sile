@@ -1,10 +1,52 @@
 <div class="hero-section">
-  <!-- メインビジュアル -->
+  <div class="hero-decoration">
+    <div class="floating-shape shape-1"></div>
+    <div class="floating-shape shape-2"></div>
+    <div class="floating-shape shape-3"></div>
+  </div>
+
   <div class="hero-content">
-    <h1 class="hero-title">投資の知識を共有しよう</h1>
-    <p class="hero-subtitle">経験豊富な投資家たちと情報交換</p>
+    <div class="hero-badge">
+      <span>💰 投資コミュニティ</span>
+    </div>
+    
+    <h1 class="hero-title">
+      <span class="title-main">投資の知識を</span>
+      <span class="title-accent">共有しよう</span>
+    </h1>
+    
+    <p class="hero-subtitle">
+      経験豊富な投資家たちと情報交換<br>
+      <span class="subtitle-accent">あなたの投資戦略を次の高みへ</span>
+    </p>
+    
     <div class="hero-buttons">
-      <%= link_to "投稿を見る", posts_path, class: "btn btn-primary btn-lg" %>
+      <%= link_to posts_path, class: "btn btn-primary" do %>
+        <span>はじめる</span>
+        <i class="btn-icon">→</i>
+      <% end %>
+    </div>
+
+    <div class="hero-stats">
+  <div class="stat-item">
+    <div class="stat-number">01</div>
+    <div class="stat-content">
+      <h3 class="stat-title pt-4">書籍・動画検索</h3>
+      <p class="stat-description">投資に役立つコンテンツを効率的に検索</p>
+    </div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-number">02</div>
+    <div class="stat-content">
+      <h3 class="stat-title pt-4">投資情報投稿</h3>
+      <p class="stat-description">あなたの知識と経験をコミュニティと共有</p>
+    </div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-number">03</div>
+    <div class="stat-content">
+      <h3 class="stat-title">口コミ・レビュー</h3>
+      <p class="stat-description">他の投資家と活発な情報交換</p>
     </div>
   </div>
 </div>

@@ -1,67 +1,20 @@
-<%# 投稿一覧画面 %>
-<%# 新規投稿ボタン %>
-<div class="d-flex justify-content-end">
-  <%= link_to "新規投稿", new_post_path, class: "btn btn-primary mb-3 mt-3 me-5 btn-lg" %>
-</div>
+<%# 新規投稿ボタン呼び出し %>
+<%= render 'posts/index/new_post_button' %>
 
-<%# 表示件数表示 %>
-<div class="search-results-info mb-3 text-center">
-  <p>
-    <%= @posts.total_count %>件中
-    <%= @posts.offset_value + 1 %>-<%= [@posts.offset_value + @posts.limit_value, @posts.total_count].min %>件を表示
-  </p>
-</div>
+<%# 表示件数呼び出し %>
+<%= render 'posts/index/search_results_info' %>
 
 <%# 投稿表示箇所 %>
 <div class="page-container">
   <div class="content-wrapper">
-    <div class="container-fluid">
+    <div class="container-fluid px-5 py-5">
       <div class="row g-4">
-        <% @posts.each do |post| %>
-          <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
-            <%= link_to post_path(post), class: "text-decoration-none" do %>
-              <div class="post-card">
-                <%# 書籍の表示 %>
-                <div class="post-image-container <%= 'book-style' if post.category == '書籍' %>">
-                  <% if post.image.attached? %>
-                    <%= image_tag post.image.variant(resize_to_fill: [400, 300]), 
-                                  alt: post.title, 
-                                  class: "post-image" %>
-                  
-                    <%# YouTubeの表示 %>
-                    <% elsif post.youtube_video_id %>
-                      <%= image_tag post.youtube_thumbnail_url, 
-                                    alt: "#{post.title} - YouTube動画", 
-                                    class: "post-image" %>
-                  <% end %>
-                </div>
-
-                <%# オーバーレイ情報 %>
-                <%# タイトル %>
-                <div class="post-info">
-                  <h6 class="post-title text-center"><%= truncate(post.title) %></h6>
-
-                  <%# 投稿日 %>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <small class="text-muted">
-                      <%= post.created_at&.strftime("%Y年%m月%d日") %>
-                    </small>
-                    
-                    <%# カテゴリ %>
-                    <% if post.category.present? %>
-                      <span class="badge">
-                        <%= post.category %>
-                      </span>
-                    <% end %>
-                  </div>
-                </div>
-              </div>
-            <% end %>
-          </div>
-        <% end %>
+        <%# 投稿呼び出し %>
+        <%= render partial: 'posts/index/post_card', collection: @posts, as: :post %>
       </div>
     </div>
   </div>
 </div>
-<%# ページネーション表示 %>
-<%= render 'pagenation' %>
+
+<%# ページネーション呼び出し %>
+<%= render 'posts/index/pagenation' %>
