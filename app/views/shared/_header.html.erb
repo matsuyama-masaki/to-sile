@@ -2,23 +2,26 @@
 <header>
   <nav class="navbar navbar-expand-lg bg-body-tertiary p-3">
     <%# ロゴ %>
-    <a class="navbar-brand fw-bold" href="#">トウシル</a>
-      <img src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="Bootstrap" width="30" height="24">
-    </a>
+    <%= link_to root_path, class: "navbar-brand d-flex align-items-center text-decoration-none" do %>
+    <span class="logo-text-premium">トウシル</span>
+    <% end %>
     <%# レスポンシブ対応のトグルボタン %>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <%# 投稿一覧 %>
-    <div class="d-flex justify-content-center w-50">
-      <ul class="navbar-nav ms-auto align-items-center">
-        <li class="nav-item pt-1 ms-3">
-            <%= link_to "投稿一覧", posts_path, class: "nav-link fw-bold me-3" %>
-        </li>
-      </ul>
-      <%# 検索フォーム表示 %>
-      <%= render 'shared/search_form', q: @q, url: posts_path %>
-    </div>
+    <%# 「投稿一覧」と検索バーはTOP画面のみ表示させない。 %>
+    <% unless current_page?(root_path) %>
+      <%# 投稿一覧 %>
+      <div class="d-flex justify-content-center w-50">
+        <ul class="navbar-nav ms-auto align-items-center">
+          <li class="nav-item pt-1 ms-3">
+              <%= link_to "投稿一覧", posts_path, class: "nav-link fw-bold me-3" %>
+          </li>
+        </ul>
+        <%# 検索フォーム表示 %>
+        <%= render 'shared/search_form', q: @q, url: posts_path %>
+      </div>
+    <% end %>
     <%# ログイン時のメニュー %>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav ms-auto align-items-center">

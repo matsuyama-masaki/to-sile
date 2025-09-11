@@ -8,8 +8,6 @@ class PostsController < ApplicationController
   # 編集、更新、削除時のみ投稿作成者チェックを実施する。
   before_action :check_owner, only: %i[edit update destroy]
 
-  before_action :set_current_url_options
-
   def index
     # 投稿日が新しい順で一覧を表示する
      @posts = @q.result(distinct: true)
@@ -78,13 +76,5 @@ class PostsController < ApplicationController
   # 投稿の作成者でない場合、アラートを出力するメソッド
   def check_owner
     redirect_to posts_path, alert: '権限がありません。' unless current_user.own?(@post)
-  end
-
-  def set_current_url_options
-    ActiveStorage::Current.url_options = {
-      host: request.host,
-      port: request.port,
-      protocol: request.protocol
-    }
   end
 end

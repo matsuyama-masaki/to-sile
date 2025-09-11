@@ -1,0 +1,13 @@
+<%# カード内構成 %>
+<div class="card mt-2">
+  <div class="card-body">
+    <%# タイトル %>
+    <%= render 'post_header', post: post %>
+    <%# 投稿者、投稿日 %>
+    <%= render 'post_meta', post: post %>
+    <%# 本文 %>
+    <%= render 'post_review', post: post %>
+    <%# YouTube URL %>
+    <%= render 'post_youtube_url', post: post %>
+  </div>
+</div>

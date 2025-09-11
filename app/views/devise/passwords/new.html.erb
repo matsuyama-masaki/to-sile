@@ -1,26 +1,27 @@
 <div class="container mt-4">
-  <div class="card mt-2">
-    <div class="post-info">
-      <h2 class="card-title">パスワードリセット申請</h2>
-
-      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-
-        <%# メールアドレス %>
-        <div class="mb-1 text-left form-label fw-bold">
-          <%= f.label :email %><br />
+  <div class="row">
+    <div class="col-lg-12 mx-auto">
+      <div class="card mt-2">
+        <div class="card-body">
+          <h2 class="card-title">パスワードリセット申請</h2>
+          <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+            <%# メールアドレス %>
+            <div class="mb-1 text-left form-label fw-bold">
+              <%= f.label :email %><br />
+            </div>
+            <div class="mb-3">
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control" %>
+            </div>
+            <%# パスワードリセット申請送信ボタン %>
+            <div class="mb-4 mt-4 text-center">
+              <%= f.submit t('.reset_password_mail_send'), class: "btn btn-primary" %>
+            </div>
+          <% end %>
+          <%# リンク %>
+          <div class="text-center fw-bold">
+            <%= render "devise/shared/links" %>
+          </div>
         </div>
-        <div class="mb-3">
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control" %>
-        </div>
-
-        <%# パスワードリセット申請送信ボタン %>
-        <div class="mb-4 mt-4 text-center">
-          <%= f.submit t('.reset_password_mail_send'), class: "btn btn-primary" %>
-        </div>
-      <% end %>
-      <%# リンク %>
-      <div class="text-center fw-bold">
-        <%= render "devise/shared/links" %>
       </div>
     </div>
   </div>
