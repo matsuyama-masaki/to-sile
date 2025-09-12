@@ -1,0 +1,24 @@
+<!-- 現在のサムネイルを表示 -->
+<% if post.persisted? && post.post_type == 'video' && post.video_url.present? %>
+  <div class="mt-2">
+    <% thumbnail_url = post.youtube_thumbnail_url %>
+    <% if thumbnail_url %>
+      <%= image_tag thumbnail_url, 
+          class: "youtube-thumbnail", 
+          alt: t('posts.new.image.youtube_thumbnail'),
+          style: "max-width: 200px;",
+          data: {fallback_target: 'youtube-error-message' } %>
+      <%# サムネイル読み込みエラー時 %>
+      <div class="youtube-error-message alert alert-warning" style="display: none;">
+        <i class="fas fa-exclamation-triangle me-2"></i>
+        <%= t("posts.new.attention.can't_load_thumbnail")%>
+      </div>
+    <% else %>
+      <%# 無効なURLの時 %>
+      <div class="alert alert-warning">
+        <i class="fas fa-info-circle me-2"></i>
+        <%= t("posts.new.attention.invalid_url")%>
+      </div>
+    <% end %>
+  </div>
+<% end %>

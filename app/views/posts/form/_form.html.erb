@@ -1,0 +1,34 @@
+<%# 新規投稿、編集画面の構成 %>
+<%= form_with model: post, local: true do |f| %>
+  <%# エラーメッセージ表示 %>
+  <%= render 'shared/error_messages', object: f.object %>
+  
+  <%# 投稿タイプ呼び出し %>
+  <%= render 'posts/form/post_type', form: f %>
+
+  <%# 見出し呼び出し %>
+  <%= render 'posts/form/heading', form: f %>
+
+  <%# 画像アップロード呼び出し %>
+  <%= render 'posts/form/image_upload', form: f, post: @post  %>
+  
+  <%# サムネイル表示 (youtubeの場合) %>
+  <% if @post.persisted? && @post.image.present? %>
+    <%= render 'posts/form/image_thumbnail', post: @post %>
+  <% end %>
+  
+  <%# youtube_url呼び出し %>
+  <%= render 'posts/form/youtube_url', form: f %>
+
+  <%# 現在のサムネイル呼び出し(編集時) %>
+  <%= render 'posts/form/current_thumbnail',  post: @post %>
+
+  <%# カテゴリ呼び出し %>
+  <%= render 'posts/form/category_type', form: f %>
+  
+  <%# 感想呼び出し %>
+  <%= render 'posts/form/review_text', form: f %>
+
+  <%# ボタン呼び出し %>
+  <%= render 'posts/form/action', form: f,  post: @post %>
+<% end %>

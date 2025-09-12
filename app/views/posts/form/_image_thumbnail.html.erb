@@ -1,0 +1,11 @@
+<!-- 編集時にサムネイルを表示 -->
+<div class="mb-3">
+  <div class="mt-5">
+    <%= image_tag url_for(post.image),
+        class: "img-thumbnail", 
+        style: "max-width: 200px;" %>
+  </div>
+  <small class="text-muted">
+    <%= t("posts.new.attention.valid_file_formats")%>
+  </small>
+</div>
