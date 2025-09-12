@@ -1,23 +1,25 @@
-<%# 詳細画面 %>
+<%# タイトル %>
+<% content_for(:title, t('.title_show')) %>
+
 <div class="container mt-4">
-  <div class="row">
-    <div class="col-lg-12 mx-auto">
+  <div class="row justify-content-center">
+    <div class="col-md-10 col-lg-8">
       <%# 動画、画像表示処理呼び出し %>
       <%= render 'posts/show/post_media', post: @post %>
-      <div class="card mt-2">
-        <div class="card-body">
-          <%# タイトル %>
-          <h1 class="card-title h2 mb-3"><%= @post.title %></h1>
-          <div class="form-control mb-3">
-            <%# 投稿者、投稿日の呼び出し %>
-            <%= render 'posts/show/post_meta', post: @post %>
-            <%# 本文呼び出し %>
-            <%= simple_format(@post.review_text) %>
-            <%# YouTube URL呼び出し %>
-            <%= render 'posts/show/post_youtube_url', post: @post if @post.video_url.present? %>
+        <div class="card mt-2">
+          <div class="card-body">
+            <%# タイトル %>
+            <h1 class="card-title h2 mb-3"><%= @post.title %></h1>
+            <div class="form-control mb-3">
+              <%# 投稿者、投稿日の呼び出し %>
+              <%= render 'posts/show/post_meta', post: @post %>
+              <%# 本文呼び出し %>
+              <%= simple_format(@post.review_text) %>
+              <%# YouTube URL呼び出し %>
+              <%= render 'posts/show/post_youtube_url', post: @post if @post.video_url.present? %>
+            </div>
           </div>
         </div>
-      </div>
       <%# アクションボタン呼び出し %>
       <%= render 'posts/show/post_actions', post: @post %>
     </div>

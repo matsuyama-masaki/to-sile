@@ -1,10 +1,12 @@
+<%# タイトル %>
+<% content_for(:title, t('.title_index')) %>
+
 <%# 新規投稿ボタン呼び出し %>
 <%= render 'posts/index/new_post_button' %>
 
 <%# 表示件数呼び出し %>
 <%= render 'posts/index/search_results_info' %>
 
-<%# 投稿表示箇所 %>
 <div class="page-container">
   <div class="content-wrapper">
     <div class="container-fluid px-5 py-5">

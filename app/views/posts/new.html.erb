@@ -1,3 +1,8 @@
-<%= render 'form_container', title: "新規投稿" do %>
-  <%= render 'form', post: @post %>
+<%# タイトル %>
+<% content_for(:title, t('.title_new')) %>
+
+<%# 見出し呼び出し %>
+<%= render 'posts/form/form_container', title: t('.heading') do %>
+  <%# フォーム呼び出し %>
+  <%= render 'posts/form/form', post: @post %>
 <% end %>
