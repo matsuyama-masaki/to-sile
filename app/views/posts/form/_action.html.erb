@@ -1,10 +1,10 @@
 <!-- アクションボタン -->
-<div class="d-grid gap-2 d-md-flex justify-content-center">
-<%# 更新する or 投稿する %>
-<%= form.submit post.persisted? ? t("posts.new.action.update") : t("posts.new.action.insert"), 
+<div class="actions d-grid gap-2 d-md-flex justify-content-center">
+  <%# 更新する or 投稿する %>
+  <%= form.submit post.persisted? ? t("posts.new.action.update") : t("posts.new.action.insert"), 
     class: "btn btn-primary me-2" %>
-<%# キャンセル %>
-<%= link_to t("posts.new.action.cancel"), 
+  <%# キャンセル %>
+  <%= link_to t("posts.new.action.cancel"), 
     post.persisted? ? post_path(post) : posts_path, 
     class: "btn btn-secondary" %>
 </div>

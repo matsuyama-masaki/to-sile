@@ -1,8 +1,10 @@
 <!-- 画像アップロード（書籍用）-->
-<div class="mb-3">
-<%= form.label :image, class: "form-label field-label" %>
+<div class="mb-3" data-field="image">
+<%= form.label :image, class: "form-label" %>
 <%= form.file_field :image, 
-  class: "form-control", 
-  id: "image-input",
-  accept: 'image/*' %>
+    class: "form-control",
+       id: "image-input",
+   accept: 'image/*',
+ disabled: true
+%>
 </div>

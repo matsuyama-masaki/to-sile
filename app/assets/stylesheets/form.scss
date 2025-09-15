@@ -29,7 +29,6 @@
   transition: all 0.3s ease !important;
   
   &:focus {
-    // background-color: white !important;
     border-color: #6e6b3efd !important;
     box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1) !important;
     outline: none !important;
@@ -66,5 +65,15 @@
   .youtube-error-message {
     margin-top: 0.5rem;
     border-radius: 8px;
+  }
+}
+
+// スイッチのカラー
+.form-check-input{
+  background-color: #bba780 !important;
+  border-color: #6e6b3efd !important;
+  
+  &:checked {
+    background-color: #d3c50a !important;
   }
 }
