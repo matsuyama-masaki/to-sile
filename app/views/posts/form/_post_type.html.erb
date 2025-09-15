@@ -4,17 +4,29 @@
   <%# 書籍 %>
   <div class="d-flex gap-4 mt-1">
     <div class="form-check form-switch">
-      <%= form.radio_button :post_type, 'book', 
-                          id: 'post_type_book', 
-                          class: 'form-check-input' %>
-      <%= form.label :post_type_book, t("posts.new.post_types.book"), class: "form-check-label" %>
+        <%= form.radio_button :post_type, 'book', 
+               id: 'post_type_book', 
+            class: 'form-check-input',
+             data: { 
+        "post-form-target": "bookRadio",
+                    action: "change->form#typeChanged" 
+             } %>
+        <%= form.label :post_type_book,
+               t("posts.new.post_types.book"),
+            class: "form-check-label" %>
     </div>
     <%# 動画 %>
     <div class="form-check form-switch">
       <%= form.radio_button :post_type, 'video', 
-                          id: 'post_type_video', 
-                          class: 'form-check-input' %>
-      <%= form.label :post_type_video, t("posts.new.post_types.video"), class: "form-check-label" %>
+               id: 'post_type_video', 
+            class: 'form-check-input',
+             data: { 
+        "post-form-target": "videoRadio",
+                    action: "change->form#typeChanged" 
+             } %>
+      <%= form.label :post_type_video, 
+               t("posts.new.post_types.video"), 
+            class: "form-check-label" %>
     </div>
   </div>
 </div>

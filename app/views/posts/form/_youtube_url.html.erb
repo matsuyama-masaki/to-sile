@@ -1,6 +1,10 @@
 <!-- YouTube URL -->
-<%= form.label :video_url, class: "form-label" %>
-<%= form.url_field :video_url,
-      class: "form-control mb-4", 
-      id: "youtube-input",
-      placeholder: "https://www.youtube.com/watch?v=..." %>
+<div class="mb-3" data-field="youtube">
+  <%= form.label :video_url, class: "form-label" %>
+  <%= form.url_field :video_url,
+        class: "form-control", 
+           id: "youtube-input", 
+  placeholder: "https://www.youtube.com/watch?v=...",
+     disabled: true
+  %>
+</div>

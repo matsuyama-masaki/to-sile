@@ -3,10 +3,10 @@
   <% if post.image.attached? %>
     <%= image_tag post.image.variant(resize_to_fill: [400, 300]), 
                   alt: post.title, 
-                  class: "post-image" %>
+                class: "post-image" %>
   <% elsif post.youtube_video_id %>
     <%= image_tag post.youtube_thumbnail_url, 
                   alt: "#{post.title} - YouTube動画", 
-                  class: "post-image" %>
+                class: "post-image" %>
   <% end %>
 </div>

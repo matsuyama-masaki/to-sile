@@ -1,34 +1,93 @@
-<%# 新規投稿、編集画面の構成 %>
+<%# 新規投稿、投稿の編集の構成 %>
 <%= form_with model: post, local: true do |f| %>
   <%# エラーメッセージ表示 %>
   <%= render 'shared/error_messages', object: f.object %>
   
-  <%# 投稿タイプ呼び出し %>
-  <%= render 'posts/form/post_type', form: f %>
+  <div data-controller="form">
+    <%# 投稿タイプ呼び出し %>
+    <%= render 'posts/form/post_type', form: f %>
 
-  <%# 見出し呼び出し %>
-  <%= render 'posts/form/heading', form: f %>
+    <%# 見出し呼び出し %>
+    <%= render 'posts/form/heading', form: f %>
 
-  <%# 画像アップロード呼び出し %>
-  <%= render 'posts/form/image_upload', form: f, post: @post  %>
+    <%# 画像アップロード呼び出し %>
+    <%= render 'posts/form/image_upload', form: f, post: @post  %>
   
-  <%# サムネイル表示 (youtubeの場合) %>
-  <% if @post.persisted? && @post.image.present? %>
-    <%= render 'posts/form/image_thumbnail', post: @post %>
-  <% end %>
+    <%# サムネイル表示 (youtubeの場合) %>
+    <% if @post.persisted? && @post.image.present? %>
+      <%= render 'posts/form/image_thumbnail', post: @post %>
+    <% end %>
   
-  <%# youtube_url呼び出し %>
-  <%= render 'posts/form/youtube_url', form: f %>
+    <%# youtube_url呼び出し %>
+    <%= render 'posts/form/youtube_url', form: f %>
+  </div>
+    <%# 現在のサムネイル呼び出し(編集時) %>
+    <%= render 'posts/form/current_thumbnail',  post: @post %>
 
-  <%# 現在のサムネイル呼び出し(編集時) %>
-  <%= render 'posts/form/current_thumbnail',  post: @post %>
-
-  <%# カテゴリ呼び出し %>
-  <%= render 'posts/form/category_type', form: f %>
+    <%# カテゴリ呼び出し %>
+    <%= render 'posts/form/category_type', form: f %>
   
-  <%# 感想呼び出し %>
-  <%= render 'posts/form/review_text', form: f %>
+    <%# 感想呼び出し %>
+    <%= render 'posts/form/review_text', form: f %>
 
   <%# ボタン呼び出し %>
   <%= render 'posts/form/action', form: f,  post: @post %>
 <% end %>
+
+<%# フィールドを非活性にするjavascript %>
+<script>
+document.addEventListener('turbo:load', function() {
+  
+  // ラジオボタンの取得
+  const postTypeBook = document.getElementById('post_type_book');
+  const postTypeVideo = document.getElementById('post_type_video');
+  
+  // 更新対象の取得
+  const imageContainer = document.querySelector('[data-field="image"]');
+  const youtubeContainer = document.querySelector('[data-field="youtube"]');
+  
+  // 更新するフィールドのカラーを非活性する関数
+  function disableContainer(container, name) {
+    const fields = container.querySelectorAll('input');
+    
+    fields.forEach((field, index) => {
+      field.disabled = true;
+      field.style.backgroundColor = '#f5f5f5';
+      field.style.opacity = '0.6';
+    });
+    container.style.opacity = '0.6';
+    container.style.pointerEvents = 'none';
+  }
+
+  // 更新するフィールドのカラーを活性にする関数
+  function enableContainer(container, name) {
+    const fields = container.querySelectorAll('input');
+    
+    fields.forEach((field, index) => {
+      field.disabled = false;
+      field.style.backgroundColor = '';
+      field.style.opacity = '';
+    });
+    container.style.opacity = '1';
+    container.style.pointerEvents = '';
+  }
+  
+  // フィールドを更新する関数
+  function updateFieldStates() {
+    if (postTypeBook.checked) {
+      enableContainer(imageContainer);
+      disableContainer(youtubeContainer);
+    } else if (postTypeVideo.checked) {
+      enableContainer(youtubeContainer);
+      disableContainer(imageContainer);
+    }
+  }
+  
+  // ボタン切り替え時にフィールドを更新する関数を呼び出す
+  postTypeBook.addEventListener('change', updateFieldStates);
+  postTypeVideo.addEventListener('change', updateFieldStates);
+  
+  // 初期状態を設定する
+  updateFieldStates();
+});
+</script>
