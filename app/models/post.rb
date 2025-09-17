@@ -23,6 +23,9 @@ class Post < ApplicationRecord
   validates :image, presence: true, if: :book?
   validate :image_validation
 
+  # ★評価
+  validates :rating, presence: true
+
   # アソシエーション
   belongs_to :user
 
@@ -35,6 +38,11 @@ class Post < ApplicationRecord
   # スキャル デイトレ スウィング
   enum :category, { scalping: 0, day: 1, swing: 2 }
   
+  # 星の表示用メソッド
+  def rating_stars
+    "⭐" * rating + "☆" * (5 - rating)
+  end
+
   # YouTube関連のメソッド ここから
   # YouTubeのURLからVideo IDを抽出するメソッド
   def youtube_video_id

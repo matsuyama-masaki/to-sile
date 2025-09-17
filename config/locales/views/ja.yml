@@ -21,7 +21,13 @@ ja:
         category: カテゴリ
         image: 画像
         video_url: YouTube URL
+        rating: 評価
     errors:
+      models:
+        post:
+          attributes:
+            rating:
+              blank: "を選択してください"
       messages:
         blank: "を入力してください"
         too_short: "は%{count}文字以上で入力してください"

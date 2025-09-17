@@ -11,7 +11,7 @@
             <%# タイトル %>
             <h1 class="card-title h2 mb-3"><%= @post.title %></h1>
             <div class="form-control mb-3">
-              <%# 投稿者、投稿日の呼び出し %>
+              <%# 投稿者、投稿日、バッチ、★評価の呼び出し %>
               <%= render 'posts/show/post_meta', post: @post %>
               <%# 本文呼び出し %>
               <%= simple_format(@post.review_text) %>

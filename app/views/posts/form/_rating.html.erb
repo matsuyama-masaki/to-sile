@@ -1,0 +1,14 @@
+<%# rating機能 %>
+<div class="mb-3">
+  <%= form.label :rating, "評価", class: "form-label" %>
+    <%= form.select :rating, 
+      options_for_select([
+      ["⭐ (1) とても悪い", 1],
+      ["⭐⭐ (2) 悪い", 2],
+      ["⭐⭐⭐ (3) 普通", 3],
+      ["⭐⭐⭐⭐ (4) 良い", 4],
+      ["⭐⭐⭐⭐⭐ (5) とても良い", 5]
+      ],post.persisted? ? post.rating : nil),
+      {prompt: "選択してください"},
+      { class: "form-control"} %>
+</div>
