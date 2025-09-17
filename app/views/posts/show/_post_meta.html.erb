@@ -1,11 +1,21 @@
 <%# ヘッダー部 %>
 <div class="mb-3">
-  <small class="text-muted">
-    <i class="far fa-user me-2"></i>
-    <%= t("posts.show.posted_by")%> <%= post.user.name %>
-  </small>
-  <small class="text-muted ms-3">
-    <i class="far fa-clock me-2"></i>
-    <%= t("posts.show.post_day")%> <%= formatted_post_date(post) %>
-  </small>
+  <div class="d-flex justify-content-between">
+    <%# 投稿者 %>
+    <small class="text-muted">
+      <i class="far fa-user me-2"></i>
+      <%= t("posts.show.posted_by")%> <%= post.user.name %>
+    </small>
+    <%# 投稿日 %>
+    <small class="text-muted ms-3">
+      <i class="far fa-clock me-2"></i>
+      <%= t("posts.show.post_day")%> <%= formatted_post_date(post) %>
+    </small>
+    <%# ★評価 %>
+    <%= post.rating_stars %>
+    <%# バッジ %>
+    <span class="badge">
+      <%= @post.category %>
+    </span>
+  </div>
 </div>

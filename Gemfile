@@ -71,3 +71,6 @@ gem 'ransack'
 # ページネーション
 gem 'kaminari'
 gem 'bootstrap5-kaminari-views'
+
+# 画像保存用ストレージcloudinary
+gem "cloudinary"

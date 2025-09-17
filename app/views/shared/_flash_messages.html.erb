@@ -1,7 +1,9 @@
 <!-- フラッシュメッセージを表示 -->
 <% flash.each do |type, message| %>
-  <% alert_class = type == 'notice' ? 'success' : 'danger' %>
+  <% if message.is_a?(String) && message.present? %>
+    <% alert_class = type == 'notice' ? 'success' : 'danger' %>
     <div class="alert alert-<%= alert_class %>">
       <%= message %>
     </div>
+  <% end %>
 <% end %>

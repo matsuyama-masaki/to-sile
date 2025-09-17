@@ -65,7 +65,7 @@ class PostsController < ApplicationController
 
   # タイトル レビュー本文 投稿タイプ カテゴリ 画像 URLを許可する
   def post_params
-    params.require(:post).permit(:title, :review_text, :post_type, :category, :image, :video_url)
+    params.require(:post).permit(:title, :review_text, :post_type, :category, :image, :video_url, :rating)
   end
 
   # IDに基づいた投稿を検索する
