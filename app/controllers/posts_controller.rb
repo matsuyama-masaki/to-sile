@@ -9,9 +9,9 @@ class PostsController < ApplicationController
   before_action :check_owner, only: %i[edit update destroy]
 
   def index
-    # 投稿日が新しい順で一覧を表示する
+    # 投稿日が新しい順で投稿を表示する
      @posts = @q.result(distinct: true)
-                .includes(:user, image_attachment: :blob)
+                .includes(:user, :comments, image_attachment: :blob)
                 .order(created_at: :desc)
                 .page(params[:page])
                 .per(12)
@@ -39,6 +39,10 @@ class PostsController < ApplicationController
 
   def show
     # set_postのbefore_actionで設定済み
+    # 新規コメントフォームの表示メソッド
+    @comment = Comment.new
+    # コメントを投稿日の降順で表示する
+    @comments = @post.comments.includes(:user).order(created_at: :desc)
   end
 
   def edit
@@ -57,13 +61,13 @@ class PostsController < ApplicationController
 
   def destroy
     # 投稿を削除する
-    @post.destroy
+    @post.destroy!
     redirect_to posts_path, notice: t('defaults.flash_message.deleted', item: Post.model_name.human)
   end
 
   private
 
-  # タイトル レビュー本文 投稿タイプ カテゴリ 画像 URLを許可する
+  # タイトル レビュー本文 投稿タイプ カテゴリ 画像 URL 星評価を許可する
   def post_params
     params.require(:post).permit(:title, :review_text, :post_type, :category, :image, :video_url, :rating)
   end

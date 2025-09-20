@@ -45,3 +45,19 @@
     box-shadow: 0 6px 16px rgba(139, 120, 93, 0.3);
   }
 }
+
+// トグルボタン
+.btn-outline-danger {
+  background: linear-gradient(135deg, #dbc0c0 0%, #e76d88 100%);
+  color: #6b4747;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(139, 120, 93, 0.3);
+  }
+}

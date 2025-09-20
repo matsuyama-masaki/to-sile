@@ -26,31 +26,35 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav ms-auto align-items-center">
         <% if user_signed_in? %>
-        <%# マイページ %>
-        <li class="nav-item dropdown pt-1 ms-3">
-          <%= link_to "マイページ", 
-              "#", 
-              class: "nav-link dropdown-toggle text-white fw-bold", 
-              role: "button", 
-              data: { bs_toggle: "dropdown" }, 
-              aria: { expanded: "false"} %>
-          <%# ドロップダウン %>
-          <%# プロフィール編集 %>
-          <ul class="dropdown-menu dropdown-menu-end pt-1 ms-3">
-            <li><%= link_to "プロフィール編集", 
-                    edit_user_registration_path, 
-                    class: "dropdown-item text-white fw-bold" %></li>
-            <li><hr class="dropdown-divider"></li>
-            <%# ログアウト %>
-            <li><%= link_to "ログアウト", 
+          <%# ユーザ名 %>
+          <div class="mt-1 py-2 px-3">
+            <strong><%= current_user.email %>さん</strong>
+          </div>
+          <%# マイページ %>
+          <li class="nav-item dropdown pt-1 ms-3">
+            <%= link_to "マイページ", 
+                "#", 
+                class: "nav-link dropdown-toggle text-white fw-bold", 
+                role: "button", 
+                data: { bs_toggle: "dropdown" }, 
+                aria: { expanded: "false"} %>
+            <%# ドロップダウン %>
+            <%# プロフィール編集 %>
+            <ul class="dropdown-menu dropdown-menu-end pt-1 ms-3">
+              <li><%= link_to "プロフィール編集", 
+                      edit_user_registration_path, 
+                      class: "dropdown-item text-white fw-bold" %></li>
+              <li><hr class="dropdown-divider"></li>
+              <%# ログアウト %>
+              <li><%= link_to "ログアウト", 
                     destroy_user_session_path, 
                     data: { "turbo-method": :delete, 
                             "turbo-confirm": "ログアウトしますか？" }, 
                     class: "dropdown-item text-white fw-bold" %>
-            </li>
-          </ul>
+              </li>
+            </ul>
+          </li>
         <% else %>
-        </li>
       </ul>
       </div>
         <%# 未ログイン時のメニュー%>

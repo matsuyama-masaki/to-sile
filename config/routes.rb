@@ -10,9 +10,11 @@ Rails.application.routes.draw do
   }
 
   # 投稿関連のルーティング
-  resources :posts, only: %i[index new create show edit update destroy]
-
-# 開発環境でのみletter_opener_webをマウント
+  resources :posts, only: %i[index new create show edit update destroy] do
+    resources :comments, only: [:create, :destroy]
+  end
+  
+  # 開発環境でのみletter_opener_webをマウント
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 
   # ヘルスチェック用エンドポイント

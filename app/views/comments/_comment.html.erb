@@ -1,0 +1,34 @@
+<%# コメント一覧 %>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-10 col-lg-8">
+      <div id="comment-<%= comment.id %>">
+        <div class="card mb-3">
+          <div class="card-body">
+            <%# 未ログイン時、アクションボタンを非表示 %>
+            <div class="form-control">
+              <h6 class="mb-2 text-muted">
+                <%= comment.user.name %>
+                <small class="text-muted ms-2">
+                コメント日時: <%= formatted_comment_date(comment) %>
+                </small>
+              </h6>
+              <p class="card-text">
+                <%= simple_format(comment.comment_text) %>
+              </p>
+            </div>
+            <%# ログイン時、自分のコメントのみアクションボタンを表示 %>
+            <% if user_signed_in? && current_user.own?(comment) %>
+              <%= link_to [@post, comment],
+                  class: "dropdown-item text-danger mt-3",
+                  data: {turbo_method: :delete } do %>
+                <%# ゴミ箱アイコン %>
+                <i class="bi bi-trash3"></i>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

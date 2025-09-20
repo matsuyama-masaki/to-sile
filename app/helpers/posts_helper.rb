@@ -47,4 +47,9 @@ module PostsHelper
   def formatted_post_date(post)
     post.created_at.strftime("%Y年%m月%d日 %H:%M")
   end
+
+  # コメント日時表示処理
+  def formatted_comment_date(comment)
+    comment.created_at.strftime("%Y年%m月%d日 %H:%M")
+  end
 end

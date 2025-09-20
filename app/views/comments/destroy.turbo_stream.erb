@@ -1,0 +1,17 @@
+<%# コメントを削除 %>
+<%= turbo_stream.remove  "comment-#{@comment.id}" %>
+
+<%# コメント件数を更新 %>
+<%= turbo_stream.replace "comments-count" do %>
+    <%= render 'comments/count', comments: @comments %>
+<% end %>
+
+<%# 最後のコメントを削除した場合、「コメントがありません」を表示 %>
+<% if @post.comments.empty? %>
+  <%= turbo_stream.prepend "comments-list" do %>
+    <div id="no-comments-message" class="text-center text-muted py-4">
+      <i class="bi bi-chat-square-text" style="font-size: 3rem;"></i>
+      <p class="mt-2">コメントがありません</p>
+    </div>
+  <% end %>
+<% end %>

@@ -1,0 +1,26 @@
+<% if @comment.errors.present? %>
+  <%# エラー時 %>
+  <%# フォームのみ更新 %>
+  <%= turbo_stream.replace "comment-form" do %>
+    <%= render 'comments/form', comment: @comment, post: @post %>
+  <% end %>
+<% else %>
+  <%# 成功時 %>
+  <%#「コメントがありません」を削除 %>
+  <%= turbo_stream.remove "no-comments-message" %>
+  
+  <%# 新しいコメントを追加 %>
+  <%= turbo_stream.prepend "comments-list" do %>
+    <%= render 'comments/comment', comment: @comment %>
+  <% end %>
+
+  <%# コメント件数を更新 %>
+  <%= turbo_stream.replace "comments-count" do %>
+    <%= render 'comments/count', comments: @comments %>
+  <% end %>
+  
+  <%# フォームをリセット %>
+  <%= turbo_stream.replace "comment-form" do %>
+    <%= render 'comments/form', comment: Comment.new, post: @post %>
+  <% end %>
+<% end %>

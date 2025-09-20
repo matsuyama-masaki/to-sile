@@ -1,4 +1,4 @@
-<div class="search-results-info text-center">
+<div class="search-results-info text-center fw-bold">
   <p>
     <%= @posts.total_count %>件中
     <%= @posts.offset_value + 1 %>-<%= [@posts.offset_value + @posts.limit_value, @posts.total_count].min %>件を表示
