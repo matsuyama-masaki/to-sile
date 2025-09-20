@@ -101,6 +101,13 @@ ja:
       updated_not_active: パスワードが正しく変更されました。
     registrations:
       destroyed: アカウントを削除しました。またのご利用をお待ちしております。
+      signed_up: アカウント登録が完了しました。
+      signed_up_but_inactive: ログインするためには、アカウントを有効化してください。
+      signed_up_but_locked: アカウントがロックされているためログインできません。
+      signed_up_but_unconfirmed: 本人確認用のメールを送信しました。メール内のリンクからアカウントを有効化させてください。
+      update_needs_confirmation: アカウント情報を変更しました。変更されたメールアドレスの本人確認のため、本人確認用メールより確認処理をおこなってください。
+      updated: アカウント情報を変更しました。
+      updated_but_not_signed_in: あなたのアカウントは正常に更新されましたが、パスワードが変更されたため、再度ログインしてください。
       edit:
         title: プロフィール編集
         heading: プロフィール編集
@@ -121,13 +128,6 @@ ja:
         title: アカウント登録
         heading: アカウント登録
         sign_up: アカウント登録
-        signed_up: アカウント登録が完了しました。
-        signed_up_but_inactive: ログインするためには、アカウントを有効化してください。
-        signed_up_but_locked: アカウントがロックされているためログインできません。
-        signed_up_but_unconfirmed: 本人確認用のメールを送信しました。メール内のリンクからアカウントを有効化させてください。
-        update_needs_confirmation: アカウント情報を変更しました。変更されたメールアドレスの本人確認のため、本人確認用メールより確認処理をおこなってください。
-        updated: アカウント情報を変更しました。
-        updated_but_not_signed_in: あなたのアカウントは正常に更新されましたが、パスワードが変更されたため、再度ログインしてください。
         password_rule: 文字以上の半角英数字で入力してください
         password_confirmation_rule: 上記と同じパスワードを入力してください
     sessions:

@@ -28,6 +28,7 @@ class Post < ApplicationRecord
 
   # アソシエーション
   belongs_to :user
+  has_many :comments, dependent: :destroy
 
   # 画像アップロード（Active Storage）
   has_one_attached :image

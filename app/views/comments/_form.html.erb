@@ -1,0 +1,19 @@
+<%# コメントフォーム %>
+<div id="comment-form">
+  <div class="container mt-4">
+    <div class="row justify-content-center">
+      <div class="col-md-10 col-lg-8">
+        <div class="card mt-4 mb-3">
+          <div class="card-body">
+            <%= form_with model: [post, comment] do |f| %>
+              <%# コメントフォーム %>
+              <%= f.text_area :comment_text, class: "form-control", rows: 1, placeholder: "コメントを入力してください" %>
+              <%# アクションボタン %>
+              <%= f.submit "ポスト", class: "btn btn-primary mt-3" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

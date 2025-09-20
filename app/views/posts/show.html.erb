@@ -6,22 +6,39 @@
     <div class="col-md-10 col-lg-8">
       <%# 動画、画像表示処理呼び出し %>
       <%= render 'posts/show/post_media', post: @post %>
-        <div class="card mt-2">
-          <div class="card-body">
-            <%# タイトル %>
-            <h1 class="card-title h2 mb-3"><%= @post.title %></h1>
-            <div class="form-control mb-3">
-              <%# 投稿者、投稿日、バッチ、★評価の呼び出し %>
-              <%= render 'posts/show/post_meta', post: @post %>
-              <%# 本文呼び出し %>
-              <%= simple_format(@post.review_text) %>
-              <%# YouTube URL呼び出し %>
-              <%= render 'posts/show/post_youtube_url', post: @post if @post.video_url.present? %>
-            </div>
+      <div class="card mt-2">
+        <div class="card-body">
+          <%# タイトル %>
+          <h1 class="card-title h2 mb-3"><%= @post.title %></h1>
+          <div class="form-control">
+            <%# 投稿者、投稿日、バッチ、★評価の呼び出し %>
+            <%= render 'posts/show/post_meta', post: @post %>
+            <%# 本文呼び出し %>
+            <%= simple_format(@post.review_text) %>
+            <%# YouTube URL呼び出し %>
+            <%= render 'posts/show/post_youtube_url', post: @post if @post.video_url.present? %>
           </div>
+            <%# アクションボタン呼び出し %>
+            <%= render 'posts/show/post_actions', post: @post %>
         </div>
-      <%# アクションボタン呼び出し %>
-      <%= render 'posts/show/post_actions', post: @post %>
+      </div>
     </div>
   </div>
+</div>
+
+<%# コメントフォーム呼び出し %>
+<%= render 'comments/form', comment: @comment, post: @post %>
+
+<%# コメント件数呼び出し %>
+<%= render 'comments/count', comments: @comments %>
+
+<%# コメントがある場合 %>
+<div id="comments-list">  
+  <% if @comments.any? %>
+    <%# コメント一覧呼び出し %>
+    <%= render @comments %>
+  <% else %>
+    <%# コメントがない場合 %>
+    <%= render 'comments/no_comment' %>
+  <% end %>
 </div>
