@@ -3,7 +3,7 @@ class Comment < ApplicationRecord
   belongs_to :user
   belongs_to :post
 
-  # バリデーション
+  # バリデーション(非同期処理で実装したため、エラーメッセージ表示しない)
   validates :comment_text, presence: true, length: { maximum: 65535 }
 
   # コメント投稿者かどうかをチェック

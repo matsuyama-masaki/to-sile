@@ -33,6 +33,7 @@ ja:
         too_short: "は%{count}文字以上で入力してください"
         too_long: "は%{count}文字以内で入力してください"
         invalid: "は正しい形式で入力してください"
+        taken: "はすでに存在します"
   
   # 投稿
   posts:
