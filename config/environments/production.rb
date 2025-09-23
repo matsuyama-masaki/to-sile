@@ -38,6 +38,7 @@ Rails.application.configure do
   # ActiveStorageの設定
   config.active_storage.variant_processor = :mini_magick
   # Store uploaded files on the local file system (see config/storage.yml for options).
+  # cloudinaryの設定
   config.active_storage.service = :cloudinary
   # Mount Action Cable outside main process or domain.
   # config.action_cable.mount_path = nil

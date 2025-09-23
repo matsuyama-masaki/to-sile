@@ -1,3 +1,4 @@
+<%# プロフィール編集 %>
 <div class="card-body">
   <h2 class="card-title"><%= t('.heading')%></h2>
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
@@ -5,6 +6,7 @@
     <div class="mt-4 text-left fw-bold">
       <%= f.label :name, class: "form-label" %>
     </div>
+    <%# ユーザ名フィールド %>
     <div class="mb-3">
       <%= f.text_field :name, autofocus: true, class: "form-control" %>
     </div>
@@ -12,16 +14,15 @@
     <div class="mt-4 text-left">
       <%= f.label :current_password, class: "form-label" %><br />
     </div>
+    <%# 現在のパスワードフィールド %>
     <div class="mb-4">
       <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control" %>
     </div>
     <%# パスワード %>
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-    <% end %>
     <div class="mb-3 text-left form-label fw-bold">
       <%= f.label :password %> <%= t('.leave_blank_if_you_don_t_want_to_change_it') %> <br />
     </div>
+    <%# パスワードフィールド %>
     <div class="mb-4 form-label fw-bold">
       <%= f.password_field :password, 
         autocomplete: "new-password", 
@@ -32,32 +33,33 @@
     <div class="pt-2 text-left">
       <%= f.label :password_confirmation, class: "form-label" %><br />
     </div>
+    <%# パスワード確認フィールド %>
     <div class="mb-3">
       <%= f.password_field :password_confirmation,
-                            autocomplete: "new-password",
-                            class: "form-control",
-                            placeholder: t('.password_confirmation_rule') %>
+        autocomplete: "new-password",
+        class: "form-control",
+        placeholder: t('.password_confirmation_rule') %>
     </div>
     <div class="actions mb-4 mt-4 text-center">
       <%= f.submit t('.update'), class: "btn btn-primary" %>
     </div>
   <% end %>
-  <%# アカウント削除 %>
   <div class="card mt-4">
+    <%# アカウント削除 %>
     <div class="card-header">
       <h5 class="mb-0"><%= t('.destroy_account')%></h5>
     </div>
     <div class= "form-control">
       <div class="text-center">
         <p class="mt-2 form-label fw-bold"><%= t('.warning')%></p> 
-        <%# ボタン %>
+        <%# アクションボタン %>
         <%= button_to t('.cancel_my_account'), 
-                        registration_path(resource_name), 
-                        data: { 
-                        turbo_confirm: t('.are_you_sure') 
-                        }, 
-                        method: :delete, 
-                        class: "btn btn-danger" %>
+          registration_path(resource_name), 
+          data: { 
+          turbo_confirm: t('.are_you_sure') 
+          }, 
+          method: :delete, 
+          class: "btn btn-danger" %>
       </div>
     </div>
   </div>

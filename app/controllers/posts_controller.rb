@@ -52,7 +52,7 @@ class PostsController < ApplicationController
   def update
     # 投稿を更新する
     if @post.update(post_params)
-      redirect_to posts_path, notice: t('defaults.flash_message.updated', item: Post.model_name.human)
+      redirect_to @post, notice: t('defaults.flash_message.updated', item: Post.model_name.human)
     else
       # 更新できない場合、編集フォームを再表示する
       render :edit, status: :unprocessable_entity

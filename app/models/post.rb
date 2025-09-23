@@ -16,7 +16,7 @@ class Post < ApplicationRecord
             too_long: "は%{count}文字以内で入力してください"
             }
 
-  # YuTubeURL
+  # YouTubeURL
   validates :video_url, presence: true, if: :video?
   
   # 画像
@@ -25,7 +25,7 @@ class Post < ApplicationRecord
 
   # ★評価
   validates :rating, presence: true
-
+  
   # アソシエーション
   belongs_to :user
   has_many :comments, dependent: :destroy

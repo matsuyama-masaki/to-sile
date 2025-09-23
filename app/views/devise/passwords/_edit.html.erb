@@ -1,3 +1,4 @@
+<%# パスワードリセット実行 %>
 <div class="card-body">
   <h2 class="card-title"><%= t('.heading')%></h2>
     <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
@@ -6,24 +7,26 @@
       <div class="mb-1 text-left form-label fw-bold">
         <%= f.label :password, t('.new_password') %>
       </div>
+      <%# 新しいパスワードフィールド %>
       <div class="mb-3">
         <%= f.password_field :password, 
-                              autofocus: true, 
-                              autocomplete: "new-password", 
-                              class:"form-control", 
-                              placeholder: "#{@minimum_password_length} #{t('.password_rule')}" %>
+          autofocus: true, 
+          autocomplete: "new-password", 
+          class:"form-control", 
+          placeholder: "#{@minimum_password_length} #{t('.password_rule')}" %>
       </div>
       <%# 新しいパスワード（確認用） %>
       <div class="mb-1 text-left form-label fw-bold">
         <%= f.label :password_confirmation, t('.confirm_new_password') %><br />
       </div>
+      <%# 新しいパスワード（確認用）フィールド %>
       <div class="mb-3">
         <%= f.password_field :password_confirmation, 
-                              autocomplete: "new-password", 
-                              class:"form-control",
-                              placeholder: "#{t('.password_confirmation_rule')}" %>
+          autocomplete: "new-password", 
+          class:"form-control",
+          placeholder: "#{t('.password_confirmation_rule')}" %>
       </div>
-      <%# ボタン %>
+      <%# アクションボタン %>
       <div class="mb-4 mt-4 text-center">
         <%= f.submit t('.reset_password_execution'), class: "btn btn-primary"  %>
       </div>

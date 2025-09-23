@@ -45,6 +45,17 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+  
+  gem 'pry-byebug'
+
+  # RSpec関連
+  gem 'rspec-rails'
+  gem 'factory_bot_rails'
+
+  # System Spec関連
+  gem "webdrivers"
+  gem "capybara"
+  gem "selenium-webdriver"
 end
 
 group :development do
@@ -55,8 +66,6 @@ end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
-  gem "capybara"
-  gem "selenium-webdriver"
 end
 
 # ユーザ認証機能
