@@ -9,7 +9,7 @@
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <%# 「投稿一覧」と検索バーはTOP画面のみ表示させない。 %>
+    <%# 「投稿一覧」のリンクと検索バーはTOP画面のみ表示させない。 %>
     <% unless current_page?(root_path) %>
       <%# 投稿一覧 %>
       <div class="d-flex justify-content-center w-50">
@@ -33,17 +33,17 @@
           <%# マイページ %>
           <li class="nav-item dropdown pt-1 ms-3">
             <%= link_to "マイページ", 
-                "#", 
-                class: "nav-link dropdown-toggle text-white fw-bold", 
-                role: "button", 
-                data: { bs_toggle: "dropdown" }, 
-                aria: { expanded: "false"} %>
+              "#", 
+              class: "nav-link dropdown-toggle text-white fw-bold", 
+              role: "button", 
+              data: { bs_toggle: "dropdown" }, 
+              aria: { expanded: "false"} %>
             <%# ドロップダウン %>
             <%# プロフィール編集 %>
             <ul class="dropdown-menu dropdown-menu-end pt-1 ms-3">
               <li><%= link_to "プロフィール編集", 
-                      edit_user_registration_path, 
-                      class: "dropdown-item text-white fw-bold" %></li>
+                    edit_user_registration_path, 
+                    class: "dropdown-item text-white fw-bold" %></li>
               <li><hr class="dropdown-divider"></li>
               <%# ログアウト %>
               <li><%= link_to "ログアウト", 

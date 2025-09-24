@@ -2,15 +2,15 @@
 <div class="actions mt-3">
   <%# 編集 %>
   <%= link_to t("posts.show.action.edit"), edit_post_path(post), 
-              class: 'btn btn-primary me-2' %>
+    class: 'btn btn-primary me-2' %>
   <%# 削除 %>
   <%= link_to t("posts.show.action.delete"), post_path(post), 
-              data: { 
-                turbo_method: :delete, 
-                turbo_confirm: t('posts.show.delete_confirm')
-              },
-              class: 'btn btn-danger me-2' %>
+    data: { 
+      turbo_method: :delete, 
+      turbo_confirm: t('posts.show.delete_confirm')
+    },
+    class: 'btn btn-danger me-2' %>
   <%# 一覧に戻る %>
   <%= link_to t("posts.show.action.back"), posts_path, 
-              class: 'btn btn-secondary' %>
+    class: 'btn btn-secondary' %>
 </div>

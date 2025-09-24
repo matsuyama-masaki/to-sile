@@ -8,7 +8,7 @@ class Users::PasswordsController < Devise::PasswordsController
   # POST /resource/password
   def create
     super do |resource|
-      # パスワードリセット申請時にバリデーションエラーをフラッシュメッセージに変換
+      # パスワードリセット申請時にバリデーションエラーをフラッシュメッセージに変換して表示
       if resource.errors.any?
         flash.now[:danger] = resource.errors.full_messages.join(', ')
       end
@@ -23,7 +23,7 @@ class Users::PasswordsController < Devise::PasswordsController
   # PUT /resource/password
   def update
     super do |resource|
-      # パスワードリセット更新時にバリデーションエラーをフラッシュメッセージに変換
+      # パスワードリセット更新時にバリデーションエラーをフラッシュメッセージに変換して表示
       if resource.errors.any?
         flash.now[:danger] = resource.errors.full_messages.join(', ')
       end

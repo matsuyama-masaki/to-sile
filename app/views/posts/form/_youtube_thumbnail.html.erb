@@ -1,0 +1,28 @@
+<!-- youtubrサムネイルを表示 -->
+<%# 投稿タイプが動画で、かつ動画URLが存在する場合に、 %>
+<div class="pt-3 pb-3">
+  <% if post.persisted? && post.post_type == 'video' && post.video_url.present? %>
+    <%# youtube_thumbnail_urlを取得 %>
+    <% thumbnail_url = post.youtube_thumbnail_url %>
+    <%# thumbnail_urlである場合、 %>
+    <% if thumbnail_url %>
+      <%# youtubeサムネイルを表示する（編集時） %>
+      <%= image_tag thumbnail_url, 
+        class: "youtube-thumbnail", 
+        alt: t('posts.new.image.youtube_thumbnail'),
+        style: "max-width: 250px;",
+        data: {fallback_target: 'youtube-error-message' } %>
+      <%# サムネイルが読み込みエラーの場合、エラーメッセージを表示する %>
+      <div class="youtube-error-message alert alert-warning" style="display: none;">
+        <i class="fas fa-exclamation-triangle me-2"></i>
+        <%= t("posts.new.attention.can't_load_thumbnail")%>
+      </div>
+    <% else %>
+      <%# 無効なURLの場合、エラーメッセージを表示する %>
+      <div class="alert alert-warning">
+        <i class="fas fa-info-circle me-2"></i>
+        <%= t("posts.new.attention.invalid_url")%>
+      </div>
+    <% end %>
+  <% end %>
+ </div>

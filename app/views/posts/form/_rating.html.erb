@@ -1,6 +1,8 @@
 <%# rating機能 %>
 <div class="mb-3">
+  <%# 評価ラベル %>
   <%= form.label :rating, "評価", class: "form-label" %>
+    <%# 評価フィールド %>
     <%= form.select :rating, 
       options_for_select([
       ["⭐ (1) とても悪い", 1],
