@@ -117,10 +117,12 @@ Rails.application.configure do
     read_timeout: 20
   }
   
-  Rails.logger.info "=== SendGrid設定確認 ==="
-  Rails.logger.info "SENDGRID_API_KEY: #{ENV['SENDGRID_API_KEY'].present? ? '設定済み' : '未設定'}"
-  Rails.logger.info "API Key先頭: #{ENV['SENDGRID_API_KEY']&.first(4)}"
-  Rails.logger.info "========================"
+  if Rails.env.production? && ENV['SENDGRID_API_KEY'].present?
+    Rails.logger.info "=== SendGrid設定確認 ==="
+    Rails.logger.info "SENDGRID_API_KEY: #{ENV['SENDGRID_API_KEY'].present? ? '設定済み' : '未設定'}"
+    Rails.logger.info "API Key先頭: #{ENV['SENDGRID_API_KEY']&.first(4)}"
+    Rails.logger.info "========================"
+  end
   # Enable DNS rebinding protection and other `Host` header attacks.
   # config.hosts = [
   #   "example.com",     # Allow requests from example.com
