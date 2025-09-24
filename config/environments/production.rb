@@ -112,7 +112,9 @@ Rails.application.configure do
     user_name: ENV['GMAIL_USERNAME'],
     password: ENV['GMAIL_APP_PASSWORD'],
     authentication: 'plain',
-    enable_starttls_auto: true
+    enable_starttls_auto: true,
+    open_timeout: 30,        # 接続タイムアウト（秒）
+    read_timeout: 30
   }
 
   # Enable DNS rebinding protection and other `Host` header attacks.
