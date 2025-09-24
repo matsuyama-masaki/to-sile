@@ -1,11 +1,14 @@
-<!-- 編集時にサムネイルを表示 -->
-<div class="mb-3">
-  <div class="mt-5">
+<!-- 書籍サムネイルを表示 -->
+<div class="pt-3 mb-3">
+  <%# 投稿タイプが書籍で、かつ画像が存在する場合に、%>
+  <% if @post.persisted? && @post.image.present? %>
+    <%# 書籍サムネイルを表示する（編集時） %>
     <%= image_tag url_for(post.image),
-        class: "img-thumbnail", 
-        style: "max-width: 200px;" %>
-  </div>
-  <small class="text-muted">
-    <%= t("posts.new.attention.valid_file_formats")%>
-  </small>
+      class: "img-thumbnail", 
+      style: "max-width: 200px;" %>
+    <br>
+    <small class="text-muted">
+      <%= t("posts.new.attention.valid_file_formats")%>
+    </small>
+  <% end %>
 </div>

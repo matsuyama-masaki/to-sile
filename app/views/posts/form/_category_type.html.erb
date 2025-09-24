@@ -1,6 +1,8 @@
 <!-- カテゴリ -->
-  <div class="mt-3 mb-3">
+  <div class="pb-3">
+    <%# カテゴリラベル %>
     <%= form.label :category, class: "form-label" %>
+    <%# カテゴリフィールド %>
     <%= form.select :category,
         options_for_select([
         [t('posts.new.category.scalping'), 'scalping'],

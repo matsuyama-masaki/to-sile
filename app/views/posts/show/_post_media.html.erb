@@ -1,5 +1,7 @@
 <%# 動画、画像表示処理 %>
+<%# youtubeの動画IDが存在する場合、 %>
 <% if post.youtube_video_id.present? %>
+  <%# youtube動画を表示する。 %>
   <div class="mb-3">
     <iframe 
       src="<%= post.youtube_embed_url %>" 
@@ -10,10 +12,12 @@
       class="rounded">
     </iframe>
   </div>
+<%# 画像が添付されている場合、 %>
 <% elsif post.image.attached? %>
+  <%# 画像を表示する。 %>
   <div class="image-container text-center mb-3">
     <%= image_tag post.image.variant(resize_to_limit: [600, 600]), 
-                  alt: post.title,
-                class: "img-fluid rounded" %>
+      alt: post.title,
+      class: "img-fluid rounded" %>
   </div>
 <% end %>

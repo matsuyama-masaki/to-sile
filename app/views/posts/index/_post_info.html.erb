@@ -1,8 +1,9 @@
 <%# オーバーレイ情報 %>
 <div class="post-info">
+  <%# タイトル %>
   <h6 class="post-title text-center"><%= truncate(post.title) %></h6>
   
-  <%# デスクトップ表示 ここから %>
+  <%# デスクトップサイズの表示 ここから %>
   <div class="d-none d-lg-flex justify-content-between align-items-center">
     <%# 投稿日 %>
     <small class="text-muted">
@@ -20,9 +21,9 @@
       <span class="badge"><%= post.category %></span>
     <% end %>
   </div>
-  <%# デスクトップ表示 ここまで %>
+  <%# デスクトップサイズの表示 ここまで %>
 
-  <%# タブレット ここから %>
+  <%# タブレットサイズの表示 ここから %>
   <div class="d-lg-none">
     <%# 上段： 評価とコメント数 %>
     <div class="d-flex justify-content-center align-items-center mb-1">
@@ -34,9 +35,9 @@
         <span class="ms-1"><%= post.comments.count %></span>
       </div>
     </div>
-    <%# タブレット ここまで %>
+    <%# タブレットサイズの表示 ここまで %>
 
-    <%# モバイル ここから %>
+    <%# モバイルサイズの表示 ここから %>
     <div class="d-flex justify-content-between align-items-center">
       <%# 投稿日 %>
       <small class="text-muted d-none d-sm-block">
@@ -48,5 +49,5 @@
       <% end %>
     </div>
   </div>
-  <%# モバイル ここまで %>
+  <%# モバイルサイズの表示 ここまで %>
 </div>

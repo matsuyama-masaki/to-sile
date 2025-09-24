@@ -1,10 +1,12 @@
 <%# YouTube URL %>
+<%# 動画URLが存在する場合、 %>
 <% if post.video_url.present? %>
   <small class="text-muted">
     <i class="fab fa-youtube me-2"></i>
     <%= t("posts.show.youtube_url")%>
+    <%# YouTubeのリンクを表示する %>
     <%= link_to post.video_url, post.video_url, 
-                target: '_blank', 
-                  class: 'text-decoration-none' %>
+      target: '_blank', 
+      class: 'text-decoration-none' %>
   </small>
 <% end %>

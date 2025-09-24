@@ -1,6 +1,6 @@
 <!-- アクションボタン -->
 <div class="actions d-grid gap-2 d-md-flex justify-content-center">
-  <%# 更新する or 投稿する %>
+  <%# DBに投稿がある場合は更新、ない場合は新規作成を表示する %>
   <%= form.submit post.persisted? ? t("posts.new.action.update") : t("posts.new.action.insert"), 
     class: "btn btn-primary me-2" %>
   <%# キャンセル %>

@@ -1,14 +1,16 @@
 <%# サムネイル表示 %>
-<%# 書籍 %>
 <div class="post-image-container">
+  <%# 書籍であれば、 %>
   <% if post.image.attached? %>
+    <%# 書籍サムネイルを表示 %>
     <%= image_tag post.image.variant(resize_to_limit: [400, 350]), 
-                  alt: post.title,
-                style:"display: block; margin: 0 auto;" %>
-  <%# YouTube %>
+      alt: post.title,
+      style:"display: block; margin: 0 auto;" %>
+  <%# YouTube動画IDであれば、 %>
   <% elsif post.youtube_video_id %>
+    <%# YouTubeサムネイルを表示 %>
     <%= image_tag post.youtube_thumbnail_url, 
-                  alt: "#{post.title} - YouTube動画", 
-                class: "post-image" %>
+      alt: "#{post.title} - YouTube動画", 
+      class: "post-image" %>
   <% end %>
 </div>
