@@ -101,7 +101,7 @@ Rails.application.configure do
   config.active_record.attributes_for_inspect = [ :id ]
   
   # URL設定
-  config.action_mailer.default_url_options = { host: ENV['APP_HOST'] , protocol: 'https' }
+  config.action_mailer.default_url_options = { host: 'to-sile-app.onrender.com' , protocol: 'https' }
   Rails.application.routes.default_url_options = { host: 'your-domain.com' }
   
   # SMTP設定
@@ -113,10 +113,14 @@ Rails.application.configure do
     password: ENV['SENDGRID_API_KEY'],
     authentication: 'plain',
     enable_starttls_auto: true,
-    open_timeout: 10,
-    read_timeout: 10
+    open_timeout: 20,
+    read_timeout: 20
   }
-
+  
+  Rails.logger.info "=== SendGrid設定確認 ==="
+  Rails.logger.info "SENDGRID_API_KEY: #{ENV['SENDGRID_API_KEY'].present? ? '設定済み' : '未設定'}"
+  Rails.logger.info "API Key先頭: #{ENV['SENDGRID_API_KEY']&.first(4)}"
+  Rails.logger.info "========================"
   # Enable DNS rebinding protection and other `Host` header attacks.
   # config.hosts = [
   #   "example.com",     # Allow requests from example.com
