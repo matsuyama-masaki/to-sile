@@ -80,7 +80,7 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
   
   # 本番環境では実際にメール送信
-  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.delivery_method = :sendgrid_actionmailer
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
@@ -113,8 +113,8 @@ Rails.application.configure do
     password: ENV['SENDGRID_API_KEY'],
     authentication: 'plain',
     enable_starttls_auto: true,
-    open_timeout: 30,
-    read_timeout: 30
+    open_timeout: 60,
+    read_timeout: 60
   }
 
   # Enable DNS rebinding protection and other `Host` header attacks.
