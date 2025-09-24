@@ -122,4 +122,11 @@ Rails.application.configure do
   # ]
   # Skip DNS rebinding protection for the default health check endpoint.
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
+  config.after_initialize do
+    Rails.logger.info "=== 環境変数確認 ==="
+    Rails.logger.info "GMAIL_USERNAME: #{ENV['GMAIL_USERNAME']}"
+    Rails.logger.info "GMAIL_APP_PASSWORD length: #{ENV['GMAIL_APP_PASSWORD']&.length}"
+    Rails.logger.info "GMAIL_APP_PASSWORD first 4 chars: #{ENV['GMAIL_APP_PASSWORD']&.first(4)}"
+    Rails.logger.info "========================"
+  end
 end
