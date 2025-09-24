@@ -106,15 +106,15 @@ Rails.application.configure do
   
   # SMTP設定
   config.action_mailer.smtp_settings = {
-    address: 'smtp.gmail.com',
+    address: 'smtp.sendgrid.net',
     port: 587,
-    domain: 'gmail.com',
-    user_name: ENV['GMAIL_USERNAME'],
-    password: ENV['GMAIL_APP_PASSWORD'],
+    domain: 'your-app-domain.com',
+    user_name: 'apikey',
+    password: ENV['SENDGRID_API_KEY'],
     authentication: 'plain',
     enable_starttls_auto: true,
-    open_timeout: 30,        # 接続タイムアウト（秒）
-    read_timeout: 30
+    open_timeout: 10,
+    read_timeout: 10
   }
 
   # Enable DNS rebinding protection and other `Host` header attacks.
@@ -124,11 +124,5 @@ Rails.application.configure do
   # ]
   # Skip DNS rebinding protection for the default health check endpoint.
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
-  config.after_initialize do
-    Rails.logger.info "=== 環境変数確認 ==="
-    Rails.logger.info "GMAIL_USERNAME: #{ENV['GMAIL_USERNAME']}"
-    Rails.logger.info "GMAIL_APP_PASSWORD length: #{ENV['GMAIL_APP_PASSWORD']&.length}"
-    Rails.logger.info "GMAIL_APP_PASSWORD first 4 chars: #{ENV['GMAIL_APP_PASSWORD']&.first(4)}"
-    Rails.logger.info "========================"
   end
 end
