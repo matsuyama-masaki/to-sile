@@ -1,4 +1,5 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: ENV['GMAIL_USERNAME'] || 'noreply@to-sile-app.onrender.com'
+  # 送信元アドレスの設定
+  default from: ENV['SENDER_ADDRESS'] || 'noreply@to-sile-app.onrender.com'
   layout "mailer"
 end
