@@ -84,8 +84,8 @@ production:
   <<: *default
   adapter: postgresql
   encoding: unicode
-  database: myapp_production
-  username: myapp
+  database: <%= ENV['DATABASE_NAME'] %>
+  username: <%= ENV['DATABASE_USERNAME'] %>
   password: <%= ENV["MYAPP_DATABASE_PASSWORD"] %>
-  host: <%= ENV['DB_HOST'] %>
-  port: <%= ENV['DB_PORT'] %>
+  host: <%= ENV['DATABASE_HOST'] %>
+  port: <%= ENV['DATABASE_PORT'] %>
