@@ -82,8 +82,6 @@ Rails.application.configure do
   # caching is enabled.
   config.action_mailer.perform_caching = false
   
-  # 本番環境では実際にメール送信
-  config.action_mailer.delivery_method = :smtp
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
@@ -104,20 +102,21 @@ Rails.application.configure do
   config.active_record.attributes_for_inspect = [ :id ]
   
   # URL設定
-  config.action_mailer.default_url_options = { host: 'to-sile-app.onrender.com' , protocol: 'https' }
+  config.action_mailer.default_url_options = { host: ENV['APP_DOMAIN'], protocol: 'https' }
   Rails.application.routes.default_url_options = { host: 'your-domain.com' }
+  
+    # 本番環境では実際にメール送信
+  config.action_mailer.delivery_method = :smtp
   
   # SMTP設定
   config.action_mailer.smtp_settings = {
-    address: 'smtp.sendgrid.net',
+    address: ENV['SMTP_ADDRESS'],
     port: 587,
-    domain: 'to-sile-app.onrender.com',
+    domain: ENV['APP_DOMAIN'],
     user_name: 'apikey',
     password: ENV['SENDGRID_API_KEY'],
     authentication: 'plain',
-    enable_starttls_auto: true,
-    open_timeout: 60,
-    read_timeout: 60
+    enable_starttls_auto: true
   }
 
   # Enable DNS rebinding protection and other `Host` header attacks.
