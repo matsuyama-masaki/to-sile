@@ -76,8 +76,8 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "myapp_production"
 
     # メール送信を無効化
-  config.action_mailer.perform_deliveries = false
-  
+  config.action_mailer.perform_deliveries = true
+
   # Disable caching for Action Mailer templates even if Action Controller
   # caching is enabled.
   config.action_mailer.perform_caching = false
