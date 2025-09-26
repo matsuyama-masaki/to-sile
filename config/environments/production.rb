@@ -102,17 +102,17 @@ Rails.application.configure do
   config.active_record.attributes_for_inspect = [ :id ]
   
   # URL設定
-  Rails.application.routes.default_url_options = { host: 'https://to-sile-app.com' }
-  config.action_mailer.default_url_options = { host: 'https://to-sile-app.com' }
-
+  config.action_mailer.default_url_options = { host: ENV['APP_DOMAIN'], protocol: 'https' }
+  Rails.application.routes.default_url_options = { host: ENV['APP_DOMAIN'], protocol: 'https' }
+  
     # 本番環境では実際にメール送信
   config.action_mailer.delivery_method = :smtp
   
   # SMTP設定
   config.action_mailer.smtp_settings = {
-    address: 'smtp.sendgrid.net',
+    address: ENV['SMTP_ADDRESS'],
     port: 587,
-    domain: 'to-sile-app.com',
+    domain: ENV['APP_DOMAIN'],
     user_name: 'apikey',
     password: ENV['SENDGRID_API_KEY'],
     authentication: 'plain',
