@@ -106,17 +106,12 @@ Rails.application.configure do
   Rails.application.routes.default_url_options = { host: ENV['APP_DOMAIN'], protocol: 'https' }
   
     # 本番環境では実際にメール送信
-  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.delivery_method = :sendgrid_actionmailer
   
-  # SMTP設定
-  config.action_mailer.smtp_settings = {
-    address: ENV['SMTP_ADDRESS'],
-    port: 587,
-    domain: ENV['APP_DOMAIN'],
-    user_name: 'apikey',
-    password: ENV['SENDGRID_API_KEY'],
-    authentication: 'plain',
-    enable_starttls_auto: true
+   # SendGrid ActionMailer設定
+  config.action_mailer.sendgrid_actionmailer_settings = {
+    api_key: ENV['SENDGRID_API_KEY'],
+    raise_delivery_errors: true
   }
 
   # Enable DNS rebinding protection and other `Host` header attacks.

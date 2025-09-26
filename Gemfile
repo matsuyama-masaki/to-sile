@@ -83,3 +83,6 @@ gem 'bootstrap5-kaminari-views'
 
 # 画像保存用ストレージcloudinary
 gem "cloudinary"
+
+# sendgridのGEM
+gem 'sendgrid-ruby'
