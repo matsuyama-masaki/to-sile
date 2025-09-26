@@ -75,7 +75,7 @@ Rails.application.configure do
   # config.active_job.queue_adapter = :resque
   # config.active_job.queue_name_prefix = "myapp_production"
 
-    # メール送信を無効化
+    # メール送信の有無
   config.action_mailer.perform_deliveries = true
 
   # Disable caching for Action Mailer templates even if Action Controller
@@ -103,7 +103,7 @@ Rails.application.configure do
   
   # URL設定
   config.action_mailer.default_url_options = { host: ENV['APP_DOMAIN'], protocol: 'https' }
-  Rails.application.routes.default_url_options = { host: 'your-domain.com' }
+  Rails.application.routes.default_url_options = { host: ENV['APP_DOMAIN'], protocol: 'https' }
   
     # 本番環境では実際にメール送信
   config.action_mailer.delivery_method = :smtp
