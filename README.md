@@ -1,24 +1,85 @@
-# README
+# 投資情報アプリ　トウシル
+***
+## サービス概要
+  ユーザがオススメする投資の手法の動画や書籍の評価、感想を共有するサービスです。
+  動画や本に対してスコア評価やコメントを投稿することができます。
+  他のユーザの情報に対してコメントすることもできます。
+***
+### このサービスへの思い・作りたい理由
+株やFXの手法の動画や書籍がネット上で多く散見しています。
+私は投資を最初に始めた頃に、ネットで参考になりそうな手法の書籍や、YouTubeで動画を何時間も探しました。
+1ヶ所で手法のおすすめ書籍や動画を知ることができれば、探す時間が短縮できると思いこのサービスを作りました。
+***
+- 株、FXをやっている人
+- 株、FXをやろうとしている人
+***
+### サービスの利用イメージ
+1. ユーザは情報を検索し、参考にします。
+2. ユーザは参考になった情報を投稿します。
+3. ユーザは参考になった情報に対して口コミをコメントできます。
+***
+### ユーザーの獲得について
+**知人以外にアプローチ**
+  - X (旧Twitter)のハッシュタグ (#トウシルなど)を活用し、ユーザ同士のシェアを促進する。
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+**知人にアプローチ**
+  - LINEで周知し、フィードバックを得る。
+***
+### サービスの差別化ポイント・推しポイント
 
-Things you may want to cover:
+| 項目  | 本サービス          | 競合A社 | 競合R社 |
+| ---   | ----------------   | ----   | ----    |
+| 特徴① | ◎  youtubeと書籍が検索できる | 書籍のみ   | 書籍のみ  |
+| 特徴② | ◎  youtubeと書籍を投稿できる | 書籍のみ   | 書籍のみ   |
+| 特徴③ | ◎  他人の投稿に口コミできる | 書籍のみ     | 書籍のみ  |
 
-* Ruby version
+**※1** 「この商品をチェックした人はこんな商品もチェックしています」みたいな類似機能あり
+**※2** 書籍に関係のないレコメンドが表示される。
 
-* System dependencies
 
-* Configuration
+***
+### 機能
+- 会員登録機能
+- 会員削除機能
+- ログイン、ログアウト機能
+- パスワードリセット機能
+- プロフィール機能
+- 検索機能
+- 投稿編集機能
+- 投稿登録機能
+- 投稿削除機能
+- レーティング機能
+- 口コミ機能
 
-* Database creation
+***
+### 機能の実装方針予定
+| カテゴリ | 使用技術          |
+| ---     | ---------------- |
+| バックエンド   | Ruby on Rails 7 ・ Ryby 3.2.3|
+| DB            | Postgres |
+| 環境構築       | Docker |
+| GEM            | devise <br> cloudinary <br> ransack <br> image_processing <br> kaminari <br> letter_opener_web <br> Rspec <br> factory_bot_rails <br> webdrivers <br> capybara <br> selenium-webdriver <br> pry-byebug <br> sendgrid-actionmailer|
+| CSSフレームワーク| BootStrap |
+| バージョン管理   | GitHub |
+| デプロイサーバ   | render |
 
-* Database initialization
+***
+### GEM使用の経緯
+- devise
+  Sorceryと比較しました。Sorceryは現状、サポートも終わっているらしく、勉強の為、deviseを選択しました。
+- cloudinary
+  無料枠で利用できるため、選択しました。
+- ransack
+  カリキュラムでも利用したため、選択しました。
+- image_processing
+  rails標準のActive Storageを利用するため、選択しました。
+- kaminari
+  Pagy gemと迷ったが、そこまで処理速度は変わらないとのことで、歴史の長いkaminariを選択しました。
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
+***
+### 画面遷移図
+Figma：https://www.figma.com/design/TWgC9oJ2HoxEu14QRfrpVT/%E3%83%88%E3%82%A6%E3%82%B7%E3%83%AB%E3%82%A2%E3%83%97%E3%83%AA?node-id=0-1&t=09WdUhGZwnb5djWn-1
 
-* Deployment instructions
-
-* ...
+### ER図
+![alt text](<スクリーンショット 2025-09-18 150713.png>)
