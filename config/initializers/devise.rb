@@ -169,7 +169,7 @@ Devise.setup do |config|
   # Default is nil, meaning there is no restriction on how long a user can take
   # before confirming their account.
   # メール認証トークンを無効にするまでの期間の設定
-  # config.confirm_within = 3.days
+  config.confirm_within = 1.days
 
   # If true, requires any email changes to be confirmed (exactly the same way as
   # initial account confirmation) to be applied. Requires additional unconfirmed_email
@@ -287,7 +287,7 @@ Devise.setup do |config|
   # are using only default views.
   # カスタマイズビューを許可する設定
   # trueにする事で、viewが編集可能になる
-  # config.scoped_views = false
+  config.scoped_views = true
 
   # Configure the default scope given to Warden. By default it's the first
   # devise role declared in your routes (usually :user).
