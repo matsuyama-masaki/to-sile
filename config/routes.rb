@@ -14,6 +14,9 @@ Rails.application.routes.draw do
     resources :comments, only: [:create, :destroy]
   end
   
+  # faviconは使っていない為、空レスポンス対応
+  get '/favicon.ico', to: proc { [204, {}, []] }
+
   # 開発環境でのみletter_opener_webをマウント
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 
