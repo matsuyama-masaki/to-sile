@@ -106,12 +106,11 @@ Rails.application.configure do
   Rails.application.routes.default_url_options = { host: ENV['APP_DOMAIN'], protocol: 'https' }
   
     # 本番環境では実際にメール送信
-  config.action_mailer.delivery_method = :sendgrid_actionmailer
+  config.action_mailer.delivery_method = :sendgrid_web_api
   
    # SendGrid ActionMailer設定
-  config.action_mailer.sendgrid_actionmailer_settings = {
-    api_key: ENV['SENDGRID_API_KEY'],
-    raise_delivery_errors: true
+  config.action_mailer.sendgrid_web_api_settings = {
+    api_key: ENV['SENDGRID_API_KEY']
   }
 
   # Enable DNS rebinding protection and other `Host` header attacks.

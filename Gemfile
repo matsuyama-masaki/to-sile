@@ -85,4 +85,4 @@ gem 'bootstrap5-kaminari-views'
 gem "cloudinary"
 
 # sendgridのGEM
-gem 'sendgrid-ruby'
+gem 'sendgrid-actionmailer'
