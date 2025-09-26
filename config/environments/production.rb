@@ -106,10 +106,10 @@ Rails.application.configure do
   Rails.application.routes.default_url_options = { host: ENV['APP_DOMAIN'], protocol: 'https' }
   
     # 本番環境では実際にメール送信
-  config.action_mailer.delivery_method = :sendgrid_web_api
+  config.action_mailer.delivery_method = :sendgrid_actionmailer
   
    # SendGrid ActionMailer設定
-  config.action_mailer.sendgrid_web_api_settings = {
+  config.action_mailer.sendgrid_actionmailer_settings = {
     api_key: ENV['SENDGRID_API_KEY']
   }
 
