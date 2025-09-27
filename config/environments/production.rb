@@ -110,7 +110,7 @@ Rails.application.configure do
   
    # SendGrid ActionMailer設定
   config.action_mailer.sendgrid_actionmailer_settings = {
-    api_key: ENV['SENDGRID_API_KEY'] || Rails.application.credentials.sendgrid[:api_key]
+    api_key: Rails.application.credentials.dig(:sendgrid, :api_key)
   }
 
   # Enable DNS rebinding protection and other `Host` header attacks.
