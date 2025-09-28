@@ -107,7 +107,7 @@ Rails.application.configure do
   }
 
   #RoutesのURL設定
-  Rails.application.routes.default_url_options[:host] Rails.application.credentials.dig(:sendgrid, :app_domain)
+  Rails.application.routes.default_url_options[:host] = Rails.application.credentials.dig(:sendgrid, :app_domain)
   
   # 本番環境では実際にメール送信
   config.action_mailer.delivery_method = :sendgrid_actionmailer
