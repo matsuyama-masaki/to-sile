@@ -101,14 +101,18 @@ Rails.application.configure do
   # Only use :id for inspections in production.
   config.active_record.attributes_for_inspect = [ :id ]
   
-  # URL設定
-  config.action_mailer.default_url_options = { host: ENV['APP_DOMAIN'], protocol: 'https' }
-  Rails.application.routes.default_url_options = { host: ENV['APP_DOMAIN'], protocol: 'https' }
+  # Action MailerのURL設定
+  config.action_mailer.default_url_options = { 
+    host: Rails.application.credentials.dig(:sendgrid, :app_domain) 
+  }
+
+  #RoutesのURL設定
+  Rails.application.routes.default_url_options[:host] Rails.application.credentials.dig(:sendgrid, :app_domain)
   
-    # 本番環境では実際にメール送信
+  # 本番環境では実際にメール送信
   config.action_mailer.delivery_method = :sendgrid_actionmailer
   
-   # SendGrid ActionMailer設定
+  # SendGrid ActionMailer設定
   config.action_mailer.sendgrid_actionmailer_settings = {
     api_key: Rails.application.credentials.dig(:sendgrid, :api_key)
   }
