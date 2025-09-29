@@ -135,38 +135,6 @@ RSpec.describe Post, type: :model do
         # 有効であること
         expect(post).to be_valid
       end
-      
-      # it '書籍投稿で5MBを超える画像の場合、無効であること' do
-      #   post = FactoryBot.build(:post, :book, user: user)
-        
-      #   # 大きなファイルをモック
-      #   large_file = double('file')
-      #   allow(large_file).to receive(:byte_size).and_return(6.megabytes)
-      #   allow(large_file).to receive(:content_type).and_return('image/jpeg')
-      #   allow(large_file).to receive(:attached?).and_return(true)
-        
-      #   post.image.attach(large_file)
-      #   post.valid?
-        
-      #   expect(post).to be_invalid
-      #   expect(post.errors[:image]).to include('のサイズは5MB以下にしてください')
-      # end
-      
-      # it '書籍投稿で対応していないファイル形式の場合、無効であること' do
-      #   post = FactoryBot.build(:post, :book, user: user)
-        
-      #   # 対応していないファイル形式をモック
-      #   invalid_file = double('file')
-      #   allow(invalid_file).to receive(:byte_size).and_return(1.megabyte)
-      #   allow(invalid_file).to receive(:content_type).and_return('application/pdf')
-      #   allow(invalid_file).to receive(:attached?).and_return(true)
-        
-      #   post.image.attach(invalid_file)
-      #   post.valid?
-        
-      #   expect(post).to be_invalid
-      #   expect(post.errors[:image]).to include('は JPEG, JPG, PNG, GIF 形式のみアップロード可能です')
-      # end
     end
     
     context '評価のバリデーション' do
